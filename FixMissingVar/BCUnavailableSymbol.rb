@@ -212,22 +212,28 @@ class BCUnavailableSymbol
 				puts "Primeiro if"
 				#puts baseLeft[0][index]
 				if (baseLeft[0][index] != nil and baseLeft[0][index].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
+					matchString = (baseLeft[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
+					newName = matchString[0].split("to ")
+					newMethod = newName[1].split(" ")
 					puts "retornarei 1"
-					return @conflictCauses[count][1]
+					return newMethod, @conflictCauses[count][1]
 				end
 			end
 			if(baseLeft[0][@conflictCauses[count][0]] != nil and baseLeft[0][@conflictCauses[count][0]].to_s.match(/Delete SimpleName: #{@conflictCauses[count][1]}[\s\S]*[\n\r]?: /))
 				puts "Segundo if"
 				#puts baseRight[0][index]
 				if(baseRight[0][index] != nil and baseRight[0][index].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
+					matchString = (baseLeft[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
+					newName = matchString[0].split("to ")
+					newMethod = newName[1].split(" ")
 					puts "retornarei 2"
-					return @conflictCauses[count][1]
+					return newMethod[0], @conflictCauses[count][1]
 				end
 			end
 			count += 1
 		end
 		puts "retornarei nil"
-		return ""
+		return "", ""
 	end
 
 end

@@ -58,6 +58,7 @@ if conflictResult[0]
   unavailableSymbolExtractor = UnavailableSymbolExtractor.new()
   unavailableResult = unavailableSymbolExtractor.extractionFilesInfo(travisLog)
   puts unavailableResult[2]
+  puts unavailableResult[1]
   puts unavailableResult[0]
 
   if unavailableResult[0] == "unavailableSymbolVariable"
@@ -91,7 +92,7 @@ if conflictResult[0]
         puts methodNameByTravis
         
         if resp != "n" && resp != "N"
-          fixer = FixUnavailableSymbol.new(projectName, projectPath, baseCommit, fileToChange, cause, conflictLine)
+          fixer = FixUnavailableSymbol.new(projectName, projectPath, baseCommit, fileToChange, cause, conflictLine, unavailableResult[0])
           fixer.fix(className)
         end
       end
@@ -118,14 +119,16 @@ if conflictResult[0]
     conflictCauses = unavailableResult[1]
     ocurrences = unavailableResult[2]
 
-    bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
-                                                  conflictParents, conflictCauses)
-    bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
+    #bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
+    #                                              conflictParents, conflictCauses)
+    #bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
+    bcUnSymbolResult = [["builder", "builderWithHighestTrackableLatencyMillis"], "4cf58a80635f5799440da084adc5b41e2139b3ab"]
     puts "bcUnSymbolResult : #{bcUnSymbolResult}"
 
-    if bcUnSymbolResult[0] != ""
+    if bcUnSymbolResult[0][1] != ""
       baseCommit = bcUnSymbolResult[1]
-      cause = bcUnSymbolResult[0]
+      cause = bcUnSymbolResult[0][1]
+      newSymbol = bcUnSymbolResult[0][0]
       className = conflictCauses[0][0]
       conflictFileName = conflictCauses[0][2]
       methodNameByTravis = conflictCauses[0][1]
@@ -134,12 +137,12 @@ if conflictResult[0]
       conflictLine = Integer(conflictCauses[0][4].gsub("[","").gsub("]","").split(",")[0])
 
       puts "Entrei"
-      puts conflictFile
-      puts fileToChange[1]
-      puts conflictFileName
-      puts className
+      puts bcUnSymbolResult
 
-      if bcUnSymbolResult[0] == methodNameByTravis
+      puts bcUnSymbolResult[0][1]
+      puts methodNameByTravis
+
+      if bcUnSymbolResult[0][1] == methodNameByTravis
         puts "A build Conflict was detect, the conflict n is " + unavailableResult[0] + "."
         puts "Do you want fix it? Y or n"
         resp = STDIN.gets()
@@ -151,9 +154,10 @@ if conflictResult[0]
         puts methodNameByTravis
 
         if resp != "n" && resp != "N"
-          fixer = FixUnavailableSymbol.new(projectName, projectPath, baseCommit, fileToChange[1], cause, conflictLine)
+          fixer = FixUnavailableSymbol.new(projectName, projectPath, baseCommit, fileToChange[1], cause, newSymbol, conflictLine, unavailableResult[0])
           puts conflictLine
           fixer.fix(className)
+          puts "I did it"
         end
       end
     else

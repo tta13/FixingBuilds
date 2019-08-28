@@ -1,0 +1,998 @@
+Match SingleVariableDeclaration(517) to SingleVariableDeclaration(52)
+Match PrimitiveType: long(153) to PrimitiveType: long(16)
+Match PrimitiveType: int(162) to PrimitiveType: int(22)
+Match PrimitiveType: int(412) to PrimitiveType: long(104)
+Match Javadoc(82) to Javadoc(9)
+Match SimpleType: Host(507) to SimpleType: Host(42)
+Match SingleVariableDeclaration(158) to SingleVariableDeclaration(21)
+Match TextElement: for each host, there is a "live" histogram where current latencies are recorded, and a "cached", read-only histogram(65) to TextElement:  that maintains a separate histogram for each host.(5)
+Match Modifier: public(485) to Modifier: public(123)
+Match PrimitiveType: long(261) to PrimitiveType: long(77)
+Match SimpleName: PerHostPercentileTracker(86) to SimpleName: PerHostPercentileTracker(11)
+Match TagElement(81) to TagElement(8)
+Match ClassInstanceCreation(267) to ClassInstanceCreation(83)
+Match SingleVariableDeclaration(164) to SingleVariableDeclaration(24)
+Match Modifier: static(278) to Modifier: static(94)
+Match ReturnStatement(268) to ReturnStatement(84)
+Match SimpleName: highestTrackableLatencyMillis(266) to SimpleName: highestTrackableLatencyMillis(82)
+Match Modifier: static(257) to Modifier: static(73)
+Match SimpleName: PerHostPercentileTracker(152) to SimpleName: PerHostPercentileTracker(15)
+Match SingleVariableDeclaration(509) to SingleVariableDeclaration(44)
+Match SimpleName: highestTrackableLatencyMillis(244) to SimpleName: highestTrackableLatencyMillis(59)
+Match TextElement:  PerHostPercentileTracker(272) to TextElement:  PerHostPercentileTracker(88)
+Match SingleVariableDeclaration(263) to SingleVariableDeclaration(79)
+Match SimpleName: SocketOptions(247) to SimpleName: SocketOptions(63)
+Match TagElement: @param(252) to TagElement: @param(68)
+Match SingleVariableDeclaration(155) to SingleVariableDeclaration(18)
+Match SingleVariableDeclaration(513) to SingleVariableDeclaration(48)
+Match TextElement: PerHostPercentileTracker tracker = PerHostPercentileTracker(56) to TextElement:  PercentileTracker(3)
+Match SimpleType: Exception(515) to SimpleType: Exception(50)
+Match Block(475) to Block(119)
+Match TagElement(243) to TagElement(58)
+Match TextElement: Helper class to builder (271) to TextElement: Helper class to build (87)
+Match CompilationUnit(993) to CompilationUnit(139)
+Match SimpleName: minRecordedValues(163) to SimpleName: minRecordedValues(23)
+Match ReturnStatement(474) to ReturnStatement(118)
+Match TextElement: warning will be logged. A good rule of thumb is to set it slightly higher than(246) to TextElement: ignored and a warning will be logged. A good rule of thumb is to set it(61)
+Match TagElement: @return(254) to TagElement: @return(70)
+Match SingleVariableDeclaration(414) to SingleVariableDeclaration(106)
+Match SimpleType: Statement(511) to SimpleType: Statement(46)
+Match SimpleName: Builder(453) to SimpleName: Builder(114)
+Match SimpleName: PerHostPercentileTracker(486) to SimpleName: PerHostPercentileTracker(124)
+Match MethodDeclaration(270) to MethodDeclaration(86)
+Match SimpleName: Builder(279) to SimpleName: Builder(95)
+Match SimpleType: Builder(259) to SimpleType: Builder(75)
+Match TextElement:  instances with a fluent interface.(274) to TextElement:  instances with a fluent interface.(90)
+Match SimpleName: builderWithHighestTrackableLatencyMillis(260) to SimpleName: builder(76)
+Match TextElement:  the builder.(253) to TextElement:  the builder.(69)
+Match ThisExpression(473) to ThisExpression(117)
+Match TagElement: @code(273) to TagElement: @code(89)
+Match TextElement: <p/>(78) to TextElement: <p/>(6)
+Match SimpleName: host(508) to SimpleName: host(43)
+Match SimpleName: highestTrackableLatencyMillis(491) to SimpleName: highestTrackableLatencyMillis(129)
+Match SimpleType: Builder(454) to SimpleType: Builder(115)
+Insert SimpleType: PercentileTracker(13) into TypeDeclaration(138) at 3
+Insert MethodDeclaration(34) into TypeDeclaration(138) at 4
+Insert MethodDeclaration(56) into TypeDeclaration(138) at 5
+Update SimpleName: PerHostPercentileTracker(97) to PercentileTracker
+Move SimpleName: PerHostPercentileTracker(97) into SimpleType: PercentileTracker(13) at 0
+Insert Modifier: private(14) into MethodDeclaration(34) at 0 on Method PerHostPercentileTracker
+Move SimpleName: PerHostPercentileTracker(152) into MethodDeclaration(34) at 1 on Method PerHostPercentileTracker
+Move SingleVariableDeclaration(155) into MethodDeclaration(34) at 2
+Move SingleVariableDeclaration(158) into MethodDeclaration(34) at 3
+Move SingleVariableDeclaration(164) into MethodDeclaration(34) at 4
+Move SingleVariableDeclaration(167) into MethodDeclaration(34) at 5
+Insert Block(33) into MethodDeclaration(34) at 6 on Method PerHostPercentileTracker
+Insert MarkerAnnotation(36) into MethodDeclaration(56) at 0 on Method computeKey
+Insert Modifier: protected(37) into MethodDeclaration(56) at 1 on Method computeKey
+Insert SimpleType: Host(39) into MethodDeclaration(56) at 2 on Method computeKey
+Insert SimpleName: computeKey(40) into MethodDeclaration(56) at 3 on Method computeKey
+Move SingleVariableDeclaration(509) into MethodDeclaration(56) at 4 on Method update
+Move SingleVariableDeclaration(513) into MethodDeclaration(56) at 5 on Method update
+Move SingleVariableDeclaration(517) into MethodDeclaration(56) at 6 on Method update
+Insert Block(55) into MethodDeclaration(56) at 7 on Method computeKey
+Update SimpleName: builderWithHighestTrackableLatencyMillis(260) to builder on Method builderWithHighestTrackableLatencyMillis
+Insert ParameterizedType: PercentileTracker.Builder<Builder,PerHostPercentileTracker>(102) into TypeDeclaration(137) at 4
+Insert TagElement: @code(4) into TagElement(8) at 1
+Update TextElement: for each host, there is a "live" histogram where current latencies are recorded, and a "cached", read-only histogram(65) to  that maintains a separate histogram for each host.
+Update TextElement: Note that this class is currently marked "beta": it hasn't been extensively tested yet, and the API is still subject(79) to This gives you per-host latency percentiles, meaning that each host will only be compared to itself.
+Insert 46(32) into Block(33) at 0 on Method PerHostPercentileTracker
+Insert SimpleName: Override(35) into MarkerAnnotation(36) at 0 on Method computeKey
+Update SimpleName: MapMaker(217) to Host
+Move SimpleName: MapMaker(217) into SimpleType: Host(39) at 0
+Insert ReturnStatement(54) into Block(55) at 0 on Method computeKey
+Insert SimpleType: PercentileTracker.Builder(97) into ParameterizedType: PercentileTracker.Builder<Builder,PerHostPercentileTracker>(102) at 0
+Insert SimpleType: Builder(99) into ParameterizedType: PercentileTracker.Builder<Builder,PerHostPercentileTracker>(102) at 1
+Insert SimpleType: PerHostPercentileTracker(101) into ParameterizedType: PercentileTracker.Builder<Builder,PerHostPercentileTracker>(102) at 2
+Insert SimpleName: Builder(103) into MethodDeclaration(110) at 0 on Method Builder
+Insert MarkerAnnotation(112) into MethodDeclaration(120) at 0 on Method self
+Update Modifier: public(452) to protected on Method withInterval
+Update SimpleName: withInterval(455) to self on Method withInterval
+Insert MarkerAnnotation(122) into MethodDeclaration(136) at 0 on Method build
+Update TextElement: PerHostPercentileTracker tracker = PerHostPercentileTracker(56) to  PercentileTracker
+Move TextElement: PerHostPercentileTracker tracker = PerHostPercentileTracker(56) into TagElement: @code(4) at 0
+Insert SimpleName: highestTrackableLatencyMillis(28) into 46(32) at 0 on Method PerHostPercentileTracker
+Insert SimpleName: numberOfSignificantValueDigits(29) into 46(32) at 1 on Method PerHostPercentileTracker
+Insert SimpleName: minRecordedValues(30) into 46(32) at 2 on Method PerHostPercentileTracker
+Insert SimpleName: intervalMs(31) into 46(32) at 3 on Method PerHostPercentileTracker
+Insert SimpleName: host(53) into ReturnStatement(54) at 0 on Method computeKey
+Update TextElement:  the highest expected latency. If a higher value is reported, it will be ignored and a(245) to  the highest expected latency. If a higher value is reported, it will be on Method builder
+Update TextElement: warning will be logged. A good rule of thumb is to set it slightly higher than(246) to ignored and a warning will be logged. A good rule of thumb is to set it on Method builder
+Insert TextElement: slightly higher than (62) into TagElement: @param(68) at 3 on Method builder
+Update TextElement: Helper class to builder (271) to Helper class to build
+Insert QualifiedName: PercentileTracker.Builder(96) into SimpleType: PercentileTracker.Builder(97) at 0
+Move SimpleName: Builder(380) into SimpleType: Builder(99) at 0 on Method withMinRecordedValues
+Insert SimpleName: PerHostPercentileTracker(100) into SimpleType: PerHostPercentileTracker(101) at 0
+Update PrimitiveType: int(412) to long on Method withNumberOfHosts
+Update SimpleName: numberOfHosts(413) to highestTrackableLatencyMillis on Method withNumberOfHosts
+Insert 46(108) into Block(109) at 0 on Method Builder
+Insert SimpleName: Override(111) into MarkerAnnotation(112) at 0 on Method self
+Insert SimpleName: Override(121) into MarkerAnnotation(122) at 0 on Method build
+Insert SimpleName: highestTrackableLatencyMillis(107) into 46(108) at 0 on Method Builder
+Delete QualifiedName: com.datastax.driver.core.exceptions(2)
+Delete ImportDeclaration(3)
+Delete QualifiedName: com.google.common.annotations.Beta(4)
+Delete ImportDeclaration(5)
+Delete QualifiedName: com.google.common.collect.ImmutableSet(6)
+Delete ImportDeclaration(7)
+Delete QualifiedName: com.google.common.collect.MapMaker(8)
+Delete ImportDeclaration(9)
+Delete QualifiedName: com.google.common.util.concurrent.Futures(10)
+Delete ImportDeclaration(11)
+Delete QualifiedName: com.google.common.util.concurrent.ListenableFuture(12)
+Delete ImportDeclaration(13)
+Delete QualifiedName: com.google.common.util.concurrent.SettableFuture(14)
+Delete ImportDeclaration(15)
+Delete QualifiedName: org.HdrHistogram.Histogram(16)
+Delete ImportDeclaration(17)
+Delete QualifiedName: org.HdrHistogram.Recorder(18)
+Delete ImportDeclaration(19)
+Delete QualifiedName: org.slf4j.Logger(20)
+Delete ImportDeclaration(21)
+Delete QualifiedName: org.slf4j.LoggerFactory(22)
+Delete ImportDeclaration(23)
+Delete QualifiedName: java.util.Set(24)
+Delete ImportDeclaration(25)
+Delete QualifiedName: java.util.concurrent.ConcurrentMap(26)
+Delete ImportDeclaration(27)
+Delete QualifiedName: java.util.concurrent.ExecutionException(28)
+Delete ImportDeclaration(29)
+Delete QualifiedName: java.util.concurrent.TimeUnit(30)
+Delete ImportDeclaration(31)
+Delete QualifiedName: java.util.concurrent.TimeoutException(32)
+Delete ImportDeclaration(33)
+Delete QualifiedName: com.google.common.base.Preconditions.checkArgument(34)
+Delete ImportDeclaration(35)
+Delete QualifiedName: java.util.concurrent.TimeUnit(36)
+Delete ImportDeclaration(37)
+Delete SimpleName: LatencyTracker(39)
+Delete TagElement: @link(40)
+Delete TextElement:  that records latencies for each host over a sliding time interval, and exposes an(41)
+Delete TextElement: API to retrieve the latency at a given percentile.(42)
+Delete TextElement: <p/>(43)
+Delete TextElement: To use this class, build an instance with (44)
+Delete SimpleName: builderWithHighestTrackableLatencyMillis(45)
+Delete PrimitiveType: long(46)
+Delete MethodRefParameter(47)
+Delete MethodRef(48)
+Delete TagElement: @link(49)
+Delete TextElement:  and register(50)
+Delete TextElement: it with your (51)
+Delete QualifiedName: com.datastax.driver.core.Cluster(52)
+Delete TagElement: @link(53)
+Delete TextElement:  instance:(54)
+Delete TextElement: <pre>(55)
+Delete TextElement: .builderWithHighestTrackableLatencyMillis(15000)(57)
+Delete TextElement: .build();(58)
+Delete TextElement: cluster.register(tracker);(59)
+Delete TextElement: ...(60)
+Delete TextElement: tracker.getLatencyAtPercentile(host1, 99.0);(61)
+Delete TextElement: </pre>(62)
+Delete TextElement: <p/>(63)
+Delete TextElement: This class uses <a href="http://hdrhistogram.github.io/HdrHistogram/">HdrHistogram</a> to record latencies:(64)
+Delete TextElement: that is used when clients call (66)
+Delete SimpleName: getLatencyAtPercentile(67)
+Delete SimpleName: Host(68)
+Delete SimpleType: Host(69)
+Delete MethodRefParameter(70)
+Delete PrimitiveType: double(71)
+Delete MethodRefParameter(72)
+Delete MethodRef(73)
+Delete TagElement: @link(74)
+Delete TextElement: . Each time the cached histogram becomes(75)
+Delete TextElement: older than the interval, the two histograms are switched. Note that statistics will not be available during the first(76)
+Delete TextElement: interval at cluster startup, since we don't have a cached histogram yet.(77)
+Delete TextElement: to change.(80)
+Delete SimpleName: Beta(83)
+Delete MarkerAnnotation(84)
+Delete SimpleName: LatencyTracker(87)
+Delete SimpleType: LatencyTracker(88)
+Delete Modifier: private(89)
+Delete Modifier: static(90)
+Delete Modifier: final(91)
+Delete SimpleName: Logger(92)
+Delete SimpleType: Logger(93)
+Delete SimpleName: logger(94)
+Delete SimpleName: LoggerFactory(95)
+Delete SimpleName: getLogger(96)
+Delete SimpleType: PerHostPercentileTracker(98)
+Delete TypeLiteral(99)
+Delete MethodInvocation(100)
+Delete VariableDeclarationFragment(101)
+Delete FieldDeclaration(102)
+Delete Modifier: private(103)
+Delete Modifier: final(104)
+Delete SimpleName: ConcurrentMap(105)
+Delete SimpleType: ConcurrentMap(106)
+Delete SimpleName: Host(107)
+Delete SimpleType: Host(108)
+Delete SimpleName: Recorder(109)
+Delete SimpleType: Recorder(110)
+Delete ParameterizedType: ConcurrentMap<Host,Recorder>(111)
+Delete SimpleName: recorders(112)
+Delete VariableDeclarationFragment(113)
+Delete FieldDeclaration(114)
+Delete Modifier: private(115)
+Delete Modifier: final(116)
+Delete SimpleName: ConcurrentMap(117)
+Delete SimpleType: ConcurrentMap(118)
+Delete SimpleName: Host(119)
+Delete SimpleType: Host(120)
+Delete SimpleName: CachedHistogram(121)
+Delete SimpleType: CachedHistogram(122)
+Delete ParameterizedType: ConcurrentMap<Host,CachedHistogram>(123)
+Delete SimpleName: cachedHistograms(124)
+Delete VariableDeclarationFragment(125)
+Delete FieldDeclaration(126)
+Delete Modifier: private(127)
+Delete Modifier: final(128)
+Delete PrimitiveType: long(129)
+Delete SimpleName: highestTrackableLatencyMillis(130)
+Delete VariableDeclarationFragment(131)
+Delete FieldDeclaration(132)
+Delete Modifier: private(133)
+Delete Modifier: final(134)
+Delete PrimitiveType: int(135)
+Delete SimpleName: numberOfSignificantValueDigits(136)
+Delete VariableDeclarationFragment(137)
+Delete FieldDeclaration(138)
+Delete Modifier: private(139)
+Delete Modifier: final(140)
+Delete PrimitiveType: int(141)
+Delete SimpleName: minRecordedValues(142)
+Delete VariableDeclarationFragment(143)
+Delete FieldDeclaration(144)
+Delete Modifier: private(145)
+Delete Modifier: final(146)
+Delete PrimitiveType: long(147)
+Delete SimpleName: intervalMs(148)
+Delete VariableDeclarationFragment(149)
+Delete FieldDeclaration(150)
+Delete Modifier: private(151)
+Delete PrimitiveType: int(159)
+Delete SimpleName: numberOfHosts(160)
+Delete SingleVariableDeclaration(161)
+Delete SimpleName: Histogram(168)
+Delete SimpleType: Histogram(169)
+Delete TypeLiteral(170)
+Delete SimpleName: getName(171)
+Delete MethodInvocation(172)
+Delete ExpressionStatement(173)
+Delete Block(174)
+Delete SimpleName: NoClassDefFoundError(175)
+Delete SimpleType: NoClassDefFoundError(176)
+Delete SimpleName: e(177)
+Delete SingleVariableDeclaration(178)
+Delete SimpleName: IllegalStateException(179)
+Delete SimpleType: IllegalStateException(180)
+Delete StringLiteral: "HdrHistogram seems to be missing from the classpath. "(181)
+Delete StringLiteral: "Make sure you depend on it explicitly (the driver declares it as optional)."(182)
+Delete InfixExpression: +(183)
+Delete SimpleName: e(184)
+Delete ClassInstanceCreation(185)
+Delete ThrowStatement(186)
+Delete Block(187)
+Delete CatchClause(188)
+Delete TryStatement(189)
+Delete ThisExpression(190)
+Delete SimpleName: highestTrackableLatencyMillis(191)
+Delete FieldAccess(192)
+Delete SimpleName: highestTrackableLatencyMillis(193)
+Delete Assignment: =(194)
+Delete ExpressionStatement(195)
+Delete ThisExpression(196)
+Delete SimpleName: numberOfSignificantValueDigits(197)
+Delete FieldAccess(198)
+Delete SimpleName: numberOfSignificantValueDigits(199)
+Delete Assignment: =(200)
+Delete ExpressionStatement(201)
+Delete ThisExpression(202)
+Delete SimpleName: minRecordedValues(203)
+Delete FieldAccess(204)
+Delete SimpleName: minRecordedValues(205)
+Delete Assignment: =(206)
+Delete ExpressionStatement(207)
+Delete ThisExpression(208)
+Delete SimpleName: intervalMs(209)
+Delete FieldAccess(210)
+Delete SimpleName: intervalMs(211)
+Delete Assignment: =(212)
+Delete ExpressionStatement(213)
+Delete ThisExpression(214)
+Delete SimpleName: recorders(215)
+Delete FieldAccess(216)
+Delete SimpleType: MapMaker(218)
+Delete ClassInstanceCreation(219)
+Delete SimpleName: initialCapacity(220)
+Delete SimpleName: numberOfHosts(221)
+Delete MethodInvocation(222)
+Delete SimpleName: makeMap(223)
+Delete MethodInvocation(224)
+Delete Assignment: =(225)
+Delete ExpressionStatement(226)
+Delete ThisExpression(227)
+Delete SimpleName: cachedHistograms(228)
+Delete FieldAccess(229)
+Delete SimpleName: MapMaker(230)
+Delete SimpleType: MapMaker(231)
+Delete ClassInstanceCreation(232)
+Delete SimpleName: initialCapacity(233)
+Delete SimpleName: numberOfHosts(234)
+Delete MethodInvocation(235)
+Delete SimpleName: makeMap(236)
+Delete MethodInvocation(237)
+Delete Assignment: =(238)
+Delete ExpressionStatement(239)
+Delete Block(240)
+Delete MethodDeclaration(241)
+Delete Modifier: private(280)
+Delete Modifier: final(281)
+Delete PrimitiveType: long(282)
+Delete SimpleName: highestTrackableLatencyMillis(283)
+Delete VariableDeclarationFragment(284)
+Delete FieldDeclaration(285)
+Delete Modifier: private(286)
+Delete PrimitiveType: int(287)
+Delete SimpleName: numberOfSignificantValueDigits(288)
+Delete NumberLiteral: 3(289)
+Delete VariableDeclarationFragment(290)
+Delete FieldDeclaration(291)
+Delete Modifier: private(292)
+Delete PrimitiveType: int(293)
+Delete SimpleName: minRecordedValues(294)
+Delete NumberLiteral: 1000(295)
+Delete VariableDeclarationFragment(296)
+Delete FieldDeclaration(297)
+Delete Modifier: private(298)
+Delete PrimitiveType: int(299)
+Delete SimpleName: numberOfHosts(300)
+Delete NumberLiteral: 16(301)
+Delete VariableDeclarationFragment(302)
+Delete FieldDeclaration(303)
+Delete Modifier: private(304)
+Delete PrimitiveType: long(305)
+Delete SimpleName: intervalMs(306)
+Delete SimpleName: MINUTES(307)
+Delete SimpleName: toMillis(308)
+Delete NumberLiteral: 5(309)
+Delete MethodInvocation(310)
+Delete VariableDeclarationFragment(311)
+Delete FieldDeclaration(312)
+Delete SimpleName: Builder(313) on Method Builder
+Delete PrimitiveType: long(314) on Method Builder
+Delete SimpleName: highestTrackableLatencyMillis(315) on Method Builder
+Delete SingleVariableDeclaration(316) on Method Builder
+Delete ThisExpression(317) on Method Builder
+Delete SimpleName: highestTrackableLatencyMillis(318) on Method Builder
+Delete FieldAccess(319) on Method Builder
+Delete SimpleName: highestTrackableLatencyMillis(320) on Method Builder
+Delete Assignment: =(321) on Method Builder
+Delete ExpressionStatement(322) on Method Builder
+Delete Block(323) on Method Builder
+Delete MethodDeclaration(324)
+Delete TextElement: Sets the number of significant decimal digits to which histograms will maintain value(325) on Method withNumberOfSignificantValueDigits
+Delete TextElement: resolution and separation. This must be an integer between 0 and 5.(326) on Method withNumberOfSignificantValueDigits
+Delete TextElement: <p/>(327) on Method withNumberOfSignificantValueDigits
+Delete TextElement: If not set explicitly, this value defaults to 3.(328) on Method withNumberOfSignificantValueDigits
+Delete TextElement: <p/>(329) on Method withNumberOfSignificantValueDigits
+Delete TextElement: See <a href="http://hdrhistogram.github.io/HdrHistogram/JavaDoc/org/HdrHistogram/Histogram.html">the HdrHistogram Javadocs</a>(330) on Method withNumberOfSignificantValueDigits
+Delete TextElement: for a more detailed explanation on how this parameter affects the resolution of recorded samples.(331) on Method withNumberOfSignificantValueDigits
+Delete TagElement(332) on Method withNumberOfSignificantValueDigits
+Delete SimpleName: numberOfSignificantValueDigits(333) on Method withNumberOfSignificantValueDigits
+Delete TextElement:  the new value.(334) on Method withNumberOfSignificantValueDigits
+Delete TagElement: @param(335) on Method withNumberOfSignificantValueDigits
+Delete TextElement:  this builder.(336) on Method withNumberOfSignificantValueDigits
+Delete TagElement: @return(337) on Method withNumberOfSignificantValueDigits
+Delete Javadoc(338) on Method withNumberOfSignificantValueDigits
+Delete Modifier: public(339) on Method withNumberOfSignificantValueDigits
+Delete SimpleName: Builder(340) on Method withNumberOfSignificantValueDigits
+Delete SimpleType: Builder(341) on Method withNumberOfSignificantValueDigits
+Delete SimpleName: withNumberOfSignificantValueDigits(342) on Method withNumberOfSignificantValueDigits
+Delete PrimitiveType: int(343) on Method withNumberOfSignificantValueDigits
+Delete SimpleName: numberOfSignificantValueDigits(344) on Method withNumberOfSignificantValueDigits
+Delete SingleVariableDeclaration(345) on Method withNumberOfSignificantValueDigits
+Delete ThisExpression(346) on Method withNumberOfSignificantValueDigits
+Delete SimpleName: numberOfSignificantValueDigits(347) on Method withNumberOfSignificantValueDigits
+Delete FieldAccess(348) on Method withNumberOfSignificantValueDigits
+Delete SimpleName: numberOfSignificantValueDigits(349) on Method withNumberOfSignificantValueDigits
+Delete Assignment: =(350) on Method withNumberOfSignificantValueDigits
+Delete ExpressionStatement(351) on Method withNumberOfSignificantValueDigits
+Delete ThisExpression(352) on Method withNumberOfSignificantValueDigits
+Delete ReturnStatement(353) on Method withNumberOfSignificantValueDigits
+Delete Block(354) on Method withNumberOfSignificantValueDigits
+Delete MethodDeclaration(355)
+Delete TextElement: Sets the minimum number of values that must be recorded for a host before we consider(356) on Method withMinRecordedValues
+Delete TextElement: the sample size significant.(357) on Method withMinRecordedValues
+Delete TextElement: <p/>(358) on Method withMinRecordedValues
+Delete TextElement: If this count is not reached during a given interval, (359) on Method withMinRecordedValues
+Delete SimpleName: getLatencyAtPercentile(360) on Method withMinRecordedValues
+Delete SimpleName: Host(361) on Method withMinRecordedValues
+Delete SimpleType: Host(362) on Method withMinRecordedValues
+Delete MethodRefParameter(363) on Method withMinRecordedValues
+Delete PrimitiveType: double(364) on Method withMinRecordedValues
+Delete MethodRefParameter(365) on Method withMinRecordedValues
+Delete MethodRef(366) on Method withMinRecordedValues
+Delete TagElement: @link(367) on Method withMinRecordedValues
+Delete TextElement: will return a negative value, indicating that statistics are not available. In particular, this is true(368) on Method withMinRecordedValues
+Delete TextElement: during the first interval.(369) on Method withMinRecordedValues
+Delete TextElement: <p/>(370) on Method withMinRecordedValues
+Delete TextElement: If not set explicitly, this value default to 1000.(371) on Method withMinRecordedValues
+Delete TagElement(372) on Method withMinRecordedValues
+Delete SimpleName: minRecordedValues(373) on Method withMinRecordedValues
+Delete TextElement:  the new value.(374) on Method withMinRecordedValues
+Delete TagElement: @param(375) on Method withMinRecordedValues
+Delete TextElement:  this builder.(376) on Method withMinRecordedValues
+Delete TagElement: @return(377) on Method withMinRecordedValues
+Delete Javadoc(378) on Method withMinRecordedValues
+Delete Modifier: public(379) on Method withMinRecordedValues
+Delete SimpleType: Builder(381) on Method withMinRecordedValues
+Delete SimpleName: withMinRecordedValues(382) on Method withMinRecordedValues
+Delete PrimitiveType: int(383) on Method withMinRecordedValues
+Delete SimpleName: minRecordedValues(384) on Method withMinRecordedValues
+Delete SingleVariableDeclaration(385) on Method withMinRecordedValues
+Delete ThisExpression(386) on Method withMinRecordedValues
+Delete SimpleName: minRecordedValues(387) on Method withMinRecordedValues
+Delete FieldAccess(388) on Method withMinRecordedValues
+Delete SimpleName: minRecordedValues(389) on Method withMinRecordedValues
+Delete Assignment: =(390) on Method withMinRecordedValues
+Delete ExpressionStatement(391) on Method withMinRecordedValues
+Delete ThisExpression(392) on Method withMinRecordedValues
+Delete ReturnStatement(393) on Method withMinRecordedValues
+Delete Block(394) on Method withMinRecordedValues
+Delete MethodDeclaration(395)
+Delete TextElement: Sets the number of distinct hosts that the driver will ever connect to.(396) on Method withNumberOfHosts
+Delete TextElement: <p/>(397) on Method withNumberOfHosts
+Delete TextElement: This parameter is only used to pre-size internal maps in order to avoid unnecessary rehashing.(398) on Method withNumberOfHosts
+Delete TextElement: <p/>(399) on Method withNumberOfHosts
+Delete TextElement: If not set explicitly, this value defaults to 16.(400) on Method withNumberOfHosts
+Delete TagElement(401) on Method withNumberOfHosts
+Delete SimpleName: numberOfHosts(402) on Method withNumberOfHosts
+Delete TextElement:  the new value.(403) on Method withNumberOfHosts
+Delete TagElement: @param(404) on Method withNumberOfHosts
+Delete TextElement:  this builder.(405) on Method withNumberOfHosts
+Delete TagElement: @return(406) on Method withNumberOfHosts
+Delete Javadoc(407) on Method withNumberOfHosts
+Delete Modifier: public(408) on Method withNumberOfHosts
+Delete SimpleName: Builder(409) on Method withNumberOfHosts
+Delete SimpleType: Builder(410) on Method withNumberOfHosts
+Delete SimpleName: withNumberOfHosts(411) on Method withNumberOfHosts
+Delete ThisExpression(415) on Method withNumberOfHosts
+Delete SimpleName: numberOfHosts(416) on Method withNumberOfHosts
+Delete FieldAccess(417) on Method withNumberOfHosts
+Delete SimpleName: numberOfHosts(418) on Method withNumberOfHosts
+Delete Assignment: =(419) on Method withNumberOfHosts
+Delete ExpressionStatement(420) on Method withNumberOfHosts
+Delete ThisExpression(421) on Method withNumberOfHosts
+Delete ReturnStatement(422) on Method withNumberOfHosts
+Delete TextElement: Sets the time interval over which samples are recorded.(425) on Method self
+Delete TextElement: <p/>(426) on Method self
+Delete TextElement: For each host, there is a "live" histogram where current latencies are recorded, and a "cached", read-only histogram(427) on Method self
+Delete TextElement: that is used when clients call (428) on Method self
+Delete SimpleName: getLatencyAtPercentile(429) on Method self
+Delete SimpleName: Host(430) on Method self
+Delete SimpleType: Host(431) on Method self
+Delete MethodRefParameter(432) on Method self
+Delete PrimitiveType: double(433) on Method self
+Delete MethodRefParameter(434) on Method self
+Delete MethodRef(435) on Method self
+Delete TagElement: @link(436) on Method self
+Delete TextElement: . Each time the cached histogram becomes(437) on Method self
+Delete TextElement: older than the interval, the two histograms are switched. Note that statistics will not be available during the first(438) on Method self
+Delete TextElement: interval at cluster startup, since we don't have a cached histogram yet.(439) on Method self
+Delete TextElement: <p/>(440) on Method self
+Delete TextElement: If not set explicitly, this value defaults to 5 minutes.(441) on Method self
+Delete TagElement(442) on Method self
+Delete SimpleName: interval(443) on Method self
+Delete TextElement:  the new interval.(444) on Method self
+Delete TagElement: @param(445) on Method self
+Delete SimpleName: unit(446) on Method self
+Delete TextElement:      the unit that the interval is expressed in.(447) on Method self
+Delete TagElement: @param(448) on Method self
+Delete TextElement:  this builder.(449) on Method self
+Delete TagElement: @return(450) on Method self
+Delete Javadoc(451) on Method self
+Delete PrimitiveType: long(456) on Method self
+Delete SimpleName: interval(457) on Method self
+Delete SingleVariableDeclaration(458) on Method self
+Delete SimpleName: TimeUnit(459) on Method self
+Delete SimpleType: TimeUnit(460) on Method self
+Delete SimpleName: unit(461) on Method self
+Delete SingleVariableDeclaration(462) on Method self
+Delete ThisExpression(463) on Method self
+Delete SimpleName: intervalMs(464) on Method self
+Delete FieldAccess(465) on Method self
+Delete SimpleName: MILLISECONDS(466) on Method self
+Delete SimpleName: convert(467) on Method self
+Delete SimpleName: interval(468) on Method self
+Delete SimpleName: unit(469) on Method self
+Delete MethodInvocation(470) on Method self
+Delete Assignment: =(471) on Method self
+Delete ExpressionStatement(472) on Method self
+Delete TextElement: Builds the (477) on Method build
+Delete TextElement:  PerHostPercentileTracker(478) on Method build
+Delete TagElement: @code(479) on Method build
+Delete TextElement:  instance configured with this builder.(480) on Method build
+Delete TagElement(481) on Method build
+Delete TextElement:  the instance.(482) on Method build
+Delete TagElement: @return(483) on Method build
+Delete Javadoc(484) on Method build
+Delete SimpleName: numberOfHosts(493) on Method build
+Delete SimpleName: Override(501) on Method update
+Delete MarkerAnnotation(502) on Method update
+Delete Modifier: public(503) on Method update
+Delete PrimitiveType: void(504) on Method update
+Delete SimpleName: update(505) on Method update
+Delete PrimitiveType: long(518) on Method update
+Delete SimpleName: newLatencyNanos(519) on Method update
+Delete SingleVariableDeclaration(520) on Method update
+Delete SimpleName: shouldConsiderNewLatency(521) on Method update
+Delete SimpleName: statement(522) on Method update
+Delete SimpleName: exception(523) on Method update
+Delete MethodInvocation(524) on Method update
+Delete PrefixExpression: !(525) on Method update
+Delete ReturnStatement(526) on Method update
+Delete IfStatement(527) on Method update
+Delete PrimitiveType: long(528) on Method update
+Delete SimpleName: latencyMs(529) on Method update
+Delete SimpleName: NANOSECONDS(530) on Method update
+Delete SimpleName: toMillis(531) on Method update
+Delete SimpleName: newLatencyNanos(532) on Method update
+Delete MethodInvocation(533) on Method update
+Delete VariableDeclarationFragment(534) on Method update
+Delete VariableDeclarationStatement(535) on Method update
+Delete SimpleName: getRecorder(536) on Method update
+Delete SimpleName: host(537) on Method update
+Delete MethodInvocation(538) on Method update
+Delete SimpleName: recordValue(539) on Method update
+Delete SimpleName: latencyMs(540) on Method update
+Delete MethodInvocation(541) on Method update
+Delete ExpressionStatement(542) on Method update
+Delete Block(543) on Method update
+Delete SimpleName: ArrayIndexOutOfBoundsException(544) on Method update
+Delete SimpleType: ArrayIndexOutOfBoundsException(545) on Method update
+Delete SimpleName: e(546) on Method update
+Delete SingleVariableDeclaration(547) on Method update
+Delete SimpleName: logger(548) on Method update
+Delete SimpleName: warn(549) on Method update
+Delete StringLiteral: "Got request with latency of {} ms, which exceeds the configured maximum trackable value {}"(550) on Method update
+Delete SimpleName: latencyMs(551) on Method update
+Delete SimpleName: highestTrackableLatencyMillis(552) on Method update
+Delete MethodInvocation(553) on Method update
+Delete ExpressionStatement(554) on Method update
+Delete Block(555) on Method update
+Delete CatchClause(556) on Method update
+Delete TryStatement(557) on Method update
+Delete Block(558) on Method update
+Delete MethodDeclaration(559)
+Delete TextElement: Returns the request latency for a host at a given percentile.(560) on Method getLatencyAtPercentile
+Delete TagElement(561) on Method getLatencyAtPercentile
+Delete SimpleName: host(562) on Method getLatencyAtPercentile
+Delete TextElement:        the host.(563) on Method getLatencyAtPercentile
+Delete TagElement: @param(564) on Method getLatencyAtPercentile
+Delete SimpleName: percentile(565) on Method getLatencyAtPercentile
+Delete TextElement:  the percentile (for example, (566) on Method getLatencyAtPercentile
+Delete TextElement:  99.0(567) on Method getLatencyAtPercentile
+Delete TagElement: @code(568) on Method getLatencyAtPercentile
+Delete TextElement:  for the 99th percentile).(569) on Method getLatencyAtPercentile
+Delete TagElement: @param(570) on Method getLatencyAtPercentile
+Delete TextElement:  the latency (in milliseconds) at the given percentile, or a negative value if it's not available yet.(571) on Method getLatencyAtPercentile
+Delete TagElement: @return(572) on Method getLatencyAtPercentile
+Delete Javadoc(573) on Method getLatencyAtPercentile
+Delete Modifier: public(574) on Method getLatencyAtPercentile
+Delete PrimitiveType: long(575) on Method getLatencyAtPercentile
+Delete SimpleName: getLatencyAtPercentile(576) on Method getLatencyAtPercentile
+Delete SimpleName: Host(577) on Method getLatencyAtPercentile
+Delete SimpleType: Host(578) on Method getLatencyAtPercentile
+Delete SimpleName: host(579) on Method getLatencyAtPercentile
+Delete SingleVariableDeclaration(580) on Method getLatencyAtPercentile
+Delete PrimitiveType: double(581) on Method getLatencyAtPercentile
+Delete SimpleName: percentile(582) on Method getLatencyAtPercentile
+Delete SingleVariableDeclaration(583) on Method getLatencyAtPercentile
+Delete SimpleName: checkArgument(584) on Method getLatencyAtPercentile
+Delete SimpleName: percentile(585) on Method getLatencyAtPercentile
+Delete NumberLiteral: 0.0(586) on Method getLatencyAtPercentile
+Delete InfixExpression: >=(587) on Method getLatencyAtPercentile
+Delete SimpleName: percentile(588) on Method getLatencyAtPercentile
+Delete NumberLiteral: 100(589) on Method getLatencyAtPercentile
+Delete InfixExpression: <(590) on Method getLatencyAtPercentile
+Delete InfixExpression: &&(591) on Method getLatencyAtPercentile
+Delete StringLiteral: "percentile must be between 0.0 and 100 (was %f)"(592) on Method getLatencyAtPercentile
+Delete MethodInvocation(593) on Method getLatencyAtPercentile
+Delete ExpressionStatement(594) on Method getLatencyAtPercentile
+Delete SimpleName: Histogram(595) on Method getLatencyAtPercentile
+Delete SimpleType: Histogram(596) on Method getLatencyAtPercentile
+Delete SimpleName: histogram(597) on Method getLatencyAtPercentile
+Delete SimpleName: getLastIntervalHistogram(598) on Method getLatencyAtPercentile
+Delete SimpleName: host(599) on Method getLatencyAtPercentile
+Delete MethodInvocation(600) on Method getLatencyAtPercentile
+Delete VariableDeclarationFragment(601) on Method getLatencyAtPercentile
+Delete VariableDeclarationStatement(602) on Method getLatencyAtPercentile
+Delete SimpleName: histogram(603) on Method getLatencyAtPercentile
+Delete NullLiteral(604) on Method getLatencyAtPercentile
+Delete InfixExpression: ==(605) on Method getLatencyAtPercentile
+Delete SimpleName: histogram(606) on Method getLatencyAtPercentile
+Delete SimpleName: getTotalCount(607) on Method getLatencyAtPercentile
+Delete MethodInvocation(608) on Method getLatencyAtPercentile
+Delete SimpleName: minRecordedValues(609) on Method getLatencyAtPercentile
+Delete InfixExpression: <(610) on Method getLatencyAtPercentile
+Delete InfixExpression: ||(611) on Method getLatencyAtPercentile
+Delete NumberLiteral: 1(612) on Method getLatencyAtPercentile
+Delete PrefixExpression: -(613) on Method getLatencyAtPercentile
+Delete ReturnStatement(614) on Method getLatencyAtPercentile
+Delete IfStatement(615) on Method getLatencyAtPercentile
+Delete SimpleName: histogram(616) on Method getLatencyAtPercentile
+Delete SimpleName: getValueAtPercentile(617) on Method getLatencyAtPercentile
+Delete SimpleName: percentile(618) on Method getLatencyAtPercentile
+Delete MethodInvocation(619) on Method getLatencyAtPercentile
+Delete ReturnStatement(620) on Method getLatencyAtPercentile
+Delete Block(621) on Method getLatencyAtPercentile
+Delete MethodDeclaration(622)
+Delete Modifier: private(623) on Method getRecorder
+Delete SimpleName: Recorder(624) on Method getRecorder
+Delete SimpleType: Recorder(625) on Method getRecorder
+Delete SimpleName: getRecorder(626) on Method getRecorder
+Delete SimpleName: Host(627) on Method getRecorder
+Delete SimpleType: Host(628) on Method getRecorder
+Delete SimpleName: host(629) on Method getRecorder
+Delete SingleVariableDeclaration(630) on Method getRecorder
+Delete SimpleName: Recorder(631) on Method getRecorder
+Delete SimpleType: Recorder(632) on Method getRecorder
+Delete SimpleName: recorder(633) on Method getRecorder
+Delete SimpleName: recorders(634) on Method getRecorder
+Delete SimpleName: get(635) on Method getRecorder
+Delete SimpleName: host(636) on Method getRecorder
+Delete MethodInvocation(637) on Method getRecorder
+Delete VariableDeclarationFragment(638) on Method getRecorder
+Delete VariableDeclarationStatement(639) on Method getRecorder
+Delete SimpleName: recorder(640) on Method getRecorder
+Delete NullLiteral(641) on Method getRecorder
+Delete InfixExpression: ==(642) on Method getRecorder
+Delete SimpleName: recorder(643) on Method getRecorder
+Delete SimpleName: Recorder(644) on Method getRecorder
+Delete SimpleType: Recorder(645) on Method getRecorder
+Delete SimpleName: highestTrackableLatencyMillis(646) on Method getRecorder
+Delete SimpleName: numberOfSignificantValueDigits(647) on Method getRecorder
+Delete ClassInstanceCreation(648) on Method getRecorder
+Delete Assignment: =(649) on Method getRecorder
+Delete ExpressionStatement(650) on Method getRecorder
+Delete SimpleName: Recorder(651) on Method getRecorder
+Delete SimpleType: Recorder(652) on Method getRecorder
+Delete SimpleName: old(653) on Method getRecorder
+Delete SimpleName: recorders(654) on Method getRecorder
+Delete SimpleName: putIfAbsent(655) on Method getRecorder
+Delete SimpleName: host(656) on Method getRecorder
+Delete SimpleName: recorder(657) on Method getRecorder
+Delete MethodInvocation(658) on Method getRecorder
+Delete VariableDeclarationFragment(659) on Method getRecorder
+Delete VariableDeclarationStatement(660) on Method getRecorder
+Delete SimpleName: old(661) on Method getRecorder
+Delete NullLiteral(662) on Method getRecorder
+Delete InfixExpression: !=(663) on Method getRecorder
+Delete SimpleName: recorder(664) on Method getRecorder
+Delete SimpleName: old(665) on Method getRecorder
+Delete Assignment: =(666) on Method getRecorder
+Delete ExpressionStatement(667) on Method getRecorder
+Delete Block(668) on Method getRecorder
+Delete SimpleName: cachedHistograms(669) on Method getRecorder
+Delete SimpleName: putIfAbsent(670) on Method getRecorder
+Delete SimpleName: host(671) on Method getRecorder
+Delete SimpleName: CachedHistogram(672) on Method getRecorder
+Delete SimpleName: empty(673) on Method getRecorder
+Delete MethodInvocation(674) on Method getRecorder
+Delete MethodInvocation(675) on Method getRecorder
+Delete ExpressionStatement(676) on Method getRecorder
+Delete Block(677) on Method getRecorder
+Delete IfStatement(678) on Method getRecorder
+Delete Block(679) on Method getRecorder
+Delete IfStatement(680) on Method getRecorder
+Delete SimpleName: recorder(681) on Method getRecorder
+Delete ReturnStatement(682) on Method getRecorder
+Delete Block(683) on Method getRecorder
+Delete MethodDeclaration(684)
+Delete TextElement:  null if no histogram is available yet (no entries recorded, or not for long enough)(685) on Method getLastIntervalHistogram
+Delete TagElement: @return(686) on Method getLastIntervalHistogram
+Delete Javadoc(687) on Method getLastIntervalHistogram
+Delete Modifier: private(688) on Method getLastIntervalHistogram
+Delete SimpleName: Histogram(689) on Method getLastIntervalHistogram
+Delete SimpleType: Histogram(690) on Method getLastIntervalHistogram
+Delete SimpleName: getLastIntervalHistogram(691) on Method getLastIntervalHistogram
+Delete SimpleName: Host(692) on Method getLastIntervalHistogram
+Delete SimpleType: Host(693) on Method getLastIntervalHistogram
+Delete SimpleName: host(694) on Method getLastIntervalHistogram
+Delete SingleVariableDeclaration(695) on Method getLastIntervalHistogram
+Delete BooleanLiteral: true(696) on Method getLastIntervalHistogram
+Delete SimpleName: CachedHistogram(697) on Method getLastIntervalHistogram
+Delete SimpleType: CachedHistogram(698) on Method getLastIntervalHistogram
+Delete SimpleName: entry(699) on Method getLastIntervalHistogram
+Delete SimpleName: cachedHistograms(700) on Method getLastIntervalHistogram
+Delete SimpleName: get(701) on Method getLastIntervalHistogram
+Delete SimpleName: host(702) on Method getLastIntervalHistogram
+Delete MethodInvocation(703) on Method getLastIntervalHistogram
+Delete VariableDeclarationFragment(704) on Method getLastIntervalHistogram
+Delete VariableDeclarationStatement(705) on Method getLastIntervalHistogram
+Delete SimpleName: entry(706) on Method getLastIntervalHistogram
+Delete NullLiteral(707) on Method getLastIntervalHistogram
+Delete InfixExpression: ==(708) on Method getLastIntervalHistogram
+Delete NullLiteral(709) on Method getLastIntervalHistogram
+Delete ReturnStatement(710) on Method getLastIntervalHistogram
+Delete IfStatement(711) on Method getLastIntervalHistogram
+Delete PrimitiveType: long(712) on Method getLastIntervalHistogram
+Delete SimpleName: age(713) on Method getLastIntervalHistogram
+Delete SimpleName: System(714) on Method getLastIntervalHistogram
+Delete SimpleName: currentTimeMillis(715) on Method getLastIntervalHistogram
+Delete MethodInvocation(716) on Method getLastIntervalHistogram
+Delete QualifiedName: entry.timestamp(717) on Method getLastIntervalHistogram
+Delete InfixExpression: -(718) on Method getLastIntervalHistogram
+Delete VariableDeclarationFragment(719) on Method getLastIntervalHistogram
+Delete VariableDeclarationStatement(720) on Method getLastIntervalHistogram
+Delete SimpleName: age(721) on Method getLastIntervalHistogram
+Delete SimpleName: intervalMs(722) on Method getLastIntervalHistogram
+Delete InfixExpression: <(723) on Method getLastIntervalHistogram
+Delete QualifiedName: entry.histogram(724) on Method getLastIntervalHistogram
+Delete SimpleName: get(725) on Method getLastIntervalHistogram
+Delete MethodInvocation(726) on Method getLastIntervalHistogram
+Delete ReturnStatement(727) on Method getLastIntervalHistogram
+Delete Block(728) on Method getLastIntervalHistogram
+Delete SimpleName: Recorder(729) on Method getLastIntervalHistogram
+Delete SimpleType: Recorder(730) on Method getLastIntervalHistogram
+Delete SimpleName: recorder(731) on Method getLastIntervalHistogram
+Delete SimpleName: recorders(732) on Method getLastIntervalHistogram
+Delete SimpleName: get(733) on Method getLastIntervalHistogram
+Delete SimpleName: host(734) on Method getLastIntervalHistogram
+Delete MethodInvocation(735) on Method getLastIntervalHistogram
+Delete VariableDeclarationFragment(736) on Method getLastIntervalHistogram
+Delete VariableDeclarationStatement(737) on Method getLastIntervalHistogram
+Delete SimpleName: Histogram(738) on Method getLastIntervalHistogram
+Delete SimpleType: Histogram(739) on Method getLastIntervalHistogram
+Delete SimpleName: staleHistogram(740) on Method getLastIntervalHistogram
+Delete QualifiedName: entry.histogram(741) on Method getLastIntervalHistogram
+Delete SimpleName: get(742) on Method getLastIntervalHistogram
+Delete NumberLiteral: 0(743) on Method getLastIntervalHistogram
+Delete SimpleName: MILLISECONDS(744) on Method getLastIntervalHistogram
+Delete MethodInvocation(745) on Method getLastIntervalHistogram
+Delete VariableDeclarationFragment(746) on Method getLastIntervalHistogram
+Delete VariableDeclarationStatement(747) on Method getLastIntervalHistogram
+Delete SimpleName: SettableFuture(748) on Method getLastIntervalHistogram
+Delete SimpleType: SettableFuture(749) on Method getLastIntervalHistogram
+Delete SimpleName: Histogram(750) on Method getLastIntervalHistogram
+Delete SimpleType: Histogram(751) on Method getLastIntervalHistogram
+Delete ParameterizedType: SettableFuture<Histogram>(752) on Method getLastIntervalHistogram
+Delete SimpleName: future(753) on Method getLastIntervalHistogram
+Delete SimpleName: SettableFuture(754) on Method getLastIntervalHistogram
+Delete SimpleName: create(755) on Method getLastIntervalHistogram
+Delete MethodInvocation(756) on Method getLastIntervalHistogram
+Delete VariableDeclarationFragment(757) on Method getLastIntervalHistogram
+Delete VariableDeclarationStatement(758) on Method getLastIntervalHistogram
+Delete SimpleName: CachedHistogram(759) on Method getLastIntervalHistogram
+Delete SimpleType: CachedHistogram(760) on Method getLastIntervalHistogram
+Delete SimpleName: newEntry(761) on Method getLastIntervalHistogram
+Delete SimpleName: CachedHistogram(762) on Method getLastIntervalHistogram
+Delete SimpleType: CachedHistogram(763) on Method getLastIntervalHistogram
+Delete SimpleName: future(764) on Method getLastIntervalHistogram
+Delete ClassInstanceCreation(765) on Method getLastIntervalHistogram
+Delete VariableDeclarationFragment(766) on Method getLastIntervalHistogram
+Delete VariableDeclarationStatement(767) on Method getLastIntervalHistogram
+Delete SimpleName: cachedHistograms(768) on Method getLastIntervalHistogram
+Delete SimpleName: replace(769) on Method getLastIntervalHistogram
+Delete SimpleName: host(770) on Method getLastIntervalHistogram
+Delete SimpleName: entry(771) on Method getLastIntervalHistogram
+Delete SimpleName: newEntry(772) on Method getLastIntervalHistogram
+Delete MethodInvocation(773) on Method getLastIntervalHistogram
+Delete SimpleName: Histogram(774) on Method getLastIntervalHistogram
+Delete SimpleType: Histogram(775) on Method getLastIntervalHistogram
+Delete SimpleName: newHistogram(776) on Method getLastIntervalHistogram
+Delete SimpleName: recorder(777) on Method getLastIntervalHistogram
+Delete SimpleName: getIntervalHistogram(778) on Method getLastIntervalHistogram
+Delete SimpleName: staleHistogram(779) on Method getLastIntervalHistogram
+Delete MethodInvocation(780) on Method getLastIntervalHistogram
+Delete VariableDeclarationFragment(781) on Method getLastIntervalHistogram
+Delete VariableDeclarationStatement(782) on Method getLastIntervalHistogram
+Delete SimpleName: future(783) on Method getLastIntervalHistogram
+Delete SimpleName: set(784) on Method getLastIntervalHistogram
+Delete SimpleName: newHistogram(785) on Method getLastIntervalHistogram
+Delete MethodInvocation(786) on Method getLastIntervalHistogram
+Delete ExpressionStatement(787) on Method getLastIntervalHistogram
+Delete SimpleName: newHistogram(788) on Method getLastIntervalHistogram
+Delete ReturnStatement(789) on Method getLastIntervalHistogram
+Delete Block(790) on Method getLastIntervalHistogram
+Delete IfStatement(791) on Method getLastIntervalHistogram
+Delete Block(792) on Method getLastIntervalHistogram
+Delete IfStatement(793) on Method getLastIntervalHistogram
+Delete Block(794) on Method getLastIntervalHistogram
+Delete WhileStatement(795) on Method getLastIntervalHistogram
+Delete Block(796) on Method getLastIntervalHistogram
+Delete SimpleName: InterruptedException(797) on Method getLastIntervalHistogram
+Delete SimpleType: InterruptedException(798) on Method getLastIntervalHistogram
+Delete SimpleName: e(799) on Method getLastIntervalHistogram
+Delete SingleVariableDeclaration(800) on Method getLastIntervalHistogram
+Delete SimpleName: Thread(801) on Method getLastIntervalHistogram
+Delete SimpleName: currentThread(802) on Method getLastIntervalHistogram
+Delete MethodInvocation(803) on Method getLastIntervalHistogram
+Delete SimpleName: interrupt(804) on Method getLastIntervalHistogram
+Delete MethodInvocation(805) on Method getLastIntervalHistogram
+Delete ExpressionStatement(806) on Method getLastIntervalHistogram
+Delete NullLiteral(807) on Method getLastIntervalHistogram
+Delete ReturnStatement(808) on Method getLastIntervalHistogram
+Delete Block(809) on Method getLastIntervalHistogram
+Delete CatchClause(810) on Method getLastIntervalHistogram
+Delete SimpleName: ExecutionException(811) on Method getLastIntervalHistogram
+Delete SimpleType: ExecutionException(812) on Method getLastIntervalHistogram
+Delete SimpleName: e(813) on Method getLastIntervalHistogram
+Delete SingleVariableDeclaration(814) on Method getLastIntervalHistogram
+Delete SimpleName: DriverInternalError(815) on Method getLastIntervalHistogram
+Delete SimpleType: DriverInternalError(816) on Method getLastIntervalHistogram
+Delete StringLiteral: "Unexpected error"(817) on Method getLastIntervalHistogram
+Delete SimpleName: e(818) on Method getLastIntervalHistogram
+Delete SimpleName: getCause(819) on Method getLastIntervalHistogram
+Delete MethodInvocation(820) on Method getLastIntervalHistogram
+Delete ClassInstanceCreation(821) on Method getLastIntervalHistogram
+Delete ThrowStatement(822) on Method getLastIntervalHistogram
+Delete Block(823) on Method getLastIntervalHistogram
+Delete CatchClause(824) on Method getLastIntervalHistogram
+Delete SimpleName: TimeoutException(825) on Method getLastIntervalHistogram
+Delete SimpleType: TimeoutException(826) on Method getLastIntervalHistogram
+Delete SimpleName: e(827) on Method getLastIntervalHistogram
+Delete SingleVariableDeclaration(828) on Method getLastIntervalHistogram
+Delete SimpleName: DriverInternalError(829) on Method getLastIntervalHistogram
+Delete SimpleType: DriverInternalError(830) on Method getLastIntervalHistogram
+Delete StringLiteral: "Unexpected timeout while getting histogram"(831) on Method getLastIntervalHistogram
+Delete SimpleName: e(832) on Method getLastIntervalHistogram
+Delete ClassInstanceCreation(833) on Method getLastIntervalHistogram
+Delete ThrowStatement(834) on Method getLastIntervalHistogram
+Delete Block(835) on Method getLastIntervalHistogram
+Delete CatchClause(836) on Method getLastIntervalHistogram
+Delete TryStatement(837) on Method getLastIntervalHistogram
+Delete Block(838) on Method getLastIntervalHistogram
+Delete MethodDeclaration(839)
+Delete Modifier: static(840)
+Delete SimpleName: CachedHistogram(841)
+Delete Modifier: final(842)
+Delete SimpleName: ListenableFuture(843)
+Delete SimpleType: ListenableFuture(844)
+Delete SimpleName: Histogram(845)
+Delete SimpleType: Histogram(846)
+Delete ParameterizedType: ListenableFuture<Histogram>(847)
+Delete SimpleName: histogram(848)
+Delete VariableDeclarationFragment(849)
+Delete FieldDeclaration(850)
+Delete Modifier: final(851)
+Delete PrimitiveType: long(852)
+Delete SimpleName: timestamp(853)
+Delete VariableDeclarationFragment(854)
+Delete FieldDeclaration(855)
+Delete SimpleName: CachedHistogram(856) on Method CachedHistogram
+Delete SimpleName: ListenableFuture(857) on Method CachedHistogram
+Delete SimpleType: ListenableFuture(858) on Method CachedHistogram
+Delete SimpleName: Histogram(859) on Method CachedHistogram
+Delete SimpleType: Histogram(860) on Method CachedHistogram
+Delete ParameterizedType: ListenableFuture<Histogram>(861) on Method CachedHistogram
+Delete SimpleName: histogram(862) on Method CachedHistogram
+Delete SingleVariableDeclaration(863) on Method CachedHistogram
+Delete ThisExpression(864) on Method CachedHistogram
+Delete SimpleName: histogram(865) on Method CachedHistogram
+Delete FieldAccess(866) on Method CachedHistogram
+Delete SimpleName: histogram(867) on Method CachedHistogram
+Delete Assignment: =(868) on Method CachedHistogram
+Delete ExpressionStatement(869) on Method CachedHistogram
+Delete ThisExpression(870) on Method CachedHistogram
+Delete SimpleName: timestamp(871) on Method CachedHistogram
+Delete FieldAccess(872) on Method CachedHistogram
+Delete SimpleName: System(873) on Method CachedHistogram
+Delete SimpleName: currentTimeMillis(874) on Method CachedHistogram
+Delete MethodInvocation(875) on Method CachedHistogram
+Delete Assignment: =(876) on Method CachedHistogram
+Delete ExpressionStatement(877) on Method CachedHistogram
+Delete Block(878) on Method CachedHistogram
+Delete MethodDeclaration(879)
+Delete Modifier: static(880) on Method empty
+Delete SimpleName: CachedHistogram(881) on Method empty
+Delete SimpleType: CachedHistogram(882) on Method empty
+Delete SimpleName: empty(883) on Method empty
+Delete SimpleName: CachedHistogram(884) on Method empty
+Delete SimpleType: CachedHistogram(885) on Method empty
+Delete SimpleName: Futures(886) on Method empty
+Delete SimpleName: Histogram(887) on Method empty
+Delete SimpleType: Histogram(888) on Method empty
+Delete SimpleName: immediateFuture(889) on Method empty
+Delete NullLiteral(890) on Method empty
+Delete MethodInvocation(891) on Method empty
+Delete ClassInstanceCreation(892) on Method empty
+Delete ReturnStatement(893) on Method empty
+Delete Block(894) on Method empty
+Delete MethodDeclaration(895)
+Delete TypeDeclaration(896)
+Delete Modifier: private(897) on Method shouldConsiderNewLatency
+Delete PrimitiveType: boolean(898) on Method shouldConsiderNewLatency
+Delete SimpleName: shouldConsiderNewLatency(899) on Method shouldConsiderNewLatency
+Delete SimpleName: Statement(900) on Method shouldConsiderNewLatency
+Delete SimpleType: Statement(901) on Method shouldConsiderNewLatency
+Delete SimpleName: statement(902) on Method shouldConsiderNewLatency
+Delete SingleVariableDeclaration(903) on Method shouldConsiderNewLatency
+Delete SimpleName: Exception(904) on Method shouldConsiderNewLatency
+Delete SimpleType: Exception(905) on Method shouldConsiderNewLatency
+Delete SimpleName: exception(906) on Method shouldConsiderNewLatency
+Delete SingleVariableDeclaration(907) on Method shouldConsiderNewLatency
+Delete SimpleName: exception(908) on Method shouldConsiderNewLatency
+Delete NullLiteral(909) on Method shouldConsiderNewLatency
+Delete InfixExpression: ==(910) on Method shouldConsiderNewLatency
+Delete BooleanLiteral: true(911) on Method shouldConsiderNewLatency
+Delete ReturnStatement(912) on Method shouldConsiderNewLatency
+Delete IfStatement(913) on Method shouldConsiderNewLatency
+Delete SimpleName: EXCLUDED_EXCEPTIONS(914) on Method shouldConsiderNewLatency
+Delete SimpleName: contains(915) on Method shouldConsiderNewLatency
+Delete SimpleName: exception(916) on Method shouldConsiderNewLatency
+Delete SimpleName: getClass(917) on Method shouldConsiderNewLatency
+Delete MethodInvocation(918) on Method shouldConsiderNewLatency
+Delete MethodInvocation(919) on Method shouldConsiderNewLatency
+Delete PrefixExpression: !(920) on Method shouldConsiderNewLatency
+Delete ReturnStatement(921) on Method shouldConsiderNewLatency
+Delete Block(922) on Method shouldConsiderNewLatency
+Delete MethodDeclaration(923)
+Delete TextElement: A set of DriverException subclasses that we should prevent from updating the host's score.(924)
+Delete TextElement: The intent behind it is to filter out "fast" errors: when a host replies with such errors,(925)
+Delete TextElement: it usually does so very quickly, because it did not involve any actual(926)
+Delete TextElement: coordination work. Such errors are not good indicators of the host's responsiveness,(927)
+Delete TextElement: and tend to make the host's score look better than it actually is.(928)
+Delete TagElement(929)
+Delete Javadoc(930)
+Delete Modifier: private(931)
+Delete Modifier: static(932)
+Delete Modifier: final(933)
+Delete SimpleName: Set(934)
+Delete SimpleType: Set(935)
+Delete SimpleName: Class(936)
+Delete SimpleType: Class(937)
+Delete SimpleName: Exception(938)
+Delete SimpleType: Exception(939)
+Delete WildcardType: ? extends Exception(940)
+Delete ParameterizedType: Class<? extends Exception>(941)
+Delete ParameterizedType: Set<Class<? extends Exception>>(942)
+Delete SimpleName: EXCLUDED_EXCEPTIONS(943)
+Delete SimpleName: ImmutableSet(944)
+Delete SimpleName: Class(945)
+Delete SimpleType: Class(946)
+Delete SimpleName: Exception(947)
+Delete SimpleType: Exception(948)
+Delete WildcardType: ? extends Exception(949)
+Delete ParameterizedType: Class<? extends Exception>(950)
+Delete SimpleName: of(951)
+Delete SimpleName: UnavailableException(952)
+Delete SimpleType: UnavailableException(953)
+Delete TypeLiteral(954)
+Delete SimpleName: OverloadedException(955)
+Delete SimpleType: OverloadedException(956)
+Delete TypeLiteral(957)
+Delete SimpleName: BootstrappingException(958)
+Delete SimpleType: BootstrappingException(959)
+Delete TypeLiteral(960)
+Delete SimpleName: UnpreparedException(961)
+Delete SimpleType: UnpreparedException(962)
+Delete TypeLiteral(963)
+Delete SimpleName: QueryValidationException(964)
+Delete SimpleType: QueryValidationException(965)
+Delete TypeLiteral(966)
+Delete MethodInvocation(967)
+Delete VariableDeclarationFragment(968)
+Delete FieldDeclaration(969)
+Delete SimpleName: Override(970) on Method onRegister
+Delete MarkerAnnotation(971) on Method onRegister
+Delete Modifier: public(972) on Method onRegister
+Delete PrimitiveType: void(973) on Method onRegister
+Delete SimpleName: onRegister(974) on Method onRegister
+Delete SimpleName: Cluster(975) on Method onRegister
+Delete SimpleType: Cluster(976) on Method onRegister
+Delete SimpleName: cluster(977) on Method onRegister
+Delete SingleVariableDeclaration(978) on Method onRegister
+Delete Block(979) on Method onRegister
+Delete MethodDeclaration(980)
+Delete SimpleName: Override(981) on Method onUnregister
+Delete MarkerAnnotation(982) on Method onUnregister
+Delete Modifier: public(983) on Method onUnregister
+Delete PrimitiveType: void(984) on Method onUnregister
+Delete SimpleName: onUnregister(985) on Method onUnregister
+Delete SimpleName: Cluster(986) on Method onUnregister
+Delete SimpleType: Cluster(987) on Method onUnregister
+Delete SimpleName: cluster(988) on Method onUnregister
+Delete SingleVariableDeclaration(989) on Method onUnregister
+Delete Block(990) on Method onUnregister
+Delete MethodDeclaration(991)
