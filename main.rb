@@ -119,10 +119,10 @@ if conflictResult[0]
     conflictCauses = unavailableResult[1]
     ocurrences = unavailableResult[2]
 
-    #bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
-    #                                              conflictParents, conflictCauses)
-    #bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
-    bcUnSymbolResult = [["builder", "builderWithHighestTrackableLatencyMillis"], "4cf58a80635f5799440da084adc5b41e2139b3ab"]
+    bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
+                                                  conflictParents, conflictCauses)
+    bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
+    #bcUnSymbolResult = [["builder", "builderWithHighestTrackableLatencyMillis"], "4cf58a80635f5799440da084adc5b41e2139b3ab"]
     puts "bcUnSymbolResult : #{bcUnSymbolResult}"
 
     if bcUnSymbolResult[0][1] != ""

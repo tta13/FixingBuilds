@@ -8,9 +8,9 @@ class DuplicatedMethodExtractor
     categoryMissingSymbol = ""
 
     filesInformation = []
-    numberOcccurrences = buildLog.scan(/\[ERROR\] [a-zA-Z0-9\/\-\.\:\[\]\,]+ method [a-zA-Z0-9\/\-\.\:\[\]\,\(\)\<\>]+is already defined in class[ \t\r\n\f]+[a-zA-Z0-9\/\-\.\:\[\]\,\(\)]*[\n\r]?/).size
+    numberOcccurrences = buildLog.scan(/\[ERROR\] [a-zA-Z0-9\/\-\.\:\[\]\,]+ method [a-zA-Z0-9\/\-\.\:\[\]\,\(\)\<\>]* is already defined in class [a-zA-Z0-9\/\-\.\:\[\]\,\(\)\<\>]*[\n\r]?/).size
     begin
-      if (buildLog[/\[ERROR\] [a-zA-Z0-9\/\-\.\:\[\]\,]+ method [a-zA-Z0-9\/\-\.\:\[\]\,\(\)\<\>]+is already defined in class[ \t\r\n\f]+[a-zA-Z0-9\/\-\.\:\[\]\,\(\)]*[\n\r]?/])
+      if (buildLog[/\[ERROR\] [a-zA-Z0-9\/\-\.\:\[\]\,]+ method [a-zA-Z0-9\/\-\.\:\[\]\,\(\)\<\>]* is already defined in class [a-zA-Z0-9\/\-\.\:\[\]\,\(\)\<\>]*[\n\r]?/])
         return getInfoDefaultCase(buildLog)
       end
     rescue
@@ -27,7 +27,7 @@ class DuplicatedMethodExtractor
       classFiles = buildLog.to_enum(:scan, /\[javac\] [\/a-zA-Z\_\-\.\:0-9]* cannot find symbol[\s\S]* \[javac\] (location:)+ [a-zA-Z\. ]*/).map { Regexp.last_match }
       callClassFiles = buildLog.to_enum(:scan, /\[javac\] [\/a-zA-Z\_\-\.\:0-9]* cannot find symbol[\s\S]* \[javac\] (location:)+ [a-zA-Z\. ]*/).map { Regexp.last_match }
     else
-      methodNames = buildLog.to_enum(:scan, /\[ERROR\][ \t\r\n\f]*symbol[ \t\r\n\f]*:[ \t\r\n\f]*[method|class|variable|constructor|static]*[ \t\r\n\f]*[a-zA-Z0-9\(\)\.\/\,\_]*[ \t\r\n\f]*(\[INFO\] )?\[ERROR\][ \t\r\n\f]*(location)?/).map { Regexp.last_match }
+        methodNames = buildLog.to_enum(:scan, /\[ERROR\][ \t\r\n\f]*symbol[ \t\r\n\f]*:[ \t\r\n\f]*[method|class|variable|constructor|static]*[ \t\r\n\f]*[a-zA-Z0-9\(\)\.\/\,\_]*[ \t\r\n\f]*(\[INFO\] )?\[ERROR\][ \t\r\n\f]*(location)?/).map { Regexp.last_match }
       classFiles = buildLog.to_enum(:scan, /\[ERROR\]?[ \t\r\n\f]*(location)?[ \t\r\n\f]*:[ \t\r\n\f]*(@)?[class|interface|variable instance of type|variable request of type)?|package]+[ \t\r\n\f]*[a-zA-Z0-9\/\-\.\:\[\]\,\(\)]*[\n\r]?/).map { Regexp.last_match }
       callClassFiles = getCallClassFiles(buildLog)
     end
@@ -69,6 +69,15 @@ class DuplicatedMethodExtractor
       return "unavailableSymbolFile"
     end
   end
+
+  def getCallClassFiles(buildLog)
+  if (buildLog.include?('Retrying, 3 of 3'))
+    aux = buildLog[/BUILD FAILURE[\s\S]*/]
+    return aux.to_s.to_enum(:scan, /\[ERROR\]?[ \t\r\n\f]*[\/\-\.\:a-zA-Z\[\]0-9\,\_]* unavailable symbol method/).map { Regexp.last_match }
+  else
+    return buildLog[/Compilation failure:[\s\S]*/].to_enum(:scan, /\[ERROR\]?[ \t\r\n\f]*[\/\-\.\:a-zA-Z\[\]0-9\,]* unavailable symbol method/).map { Regexp.last_match }
+  end
+end
 
 end
 

@@ -27,7 +27,6 @@ class FixUnavailableSymbol
 
     # getting declaration
     baseFileContent = File.read(Dir.getwd + "/" + @filePath)
-    #puts baseFileContent
     # getting merge file
     mergeFileContent = File.read(@projectPath + "/" + @filePath)
 
@@ -39,9 +38,15 @@ class FixUnavailableSymbol
       puts @missingSymbol
       puts @newSymbol
       corretoh = mergeFileContent.gsub(@missingSymbol, @newSymbol)
-      puts corretoh
-
-      #puts mergeFileContent
+      #puts corretoh
+      puts "try set "
+      puts "declaration"
+      puts "in line: "
+      puts @line
+      puts "where the file has lines equals to: "
+      puts mergeFileContent.count("\n")
+      saveModifications(corretoh)
+      deleteClone()
     else
 
       methodName = getMethodName(baseFileContent, @line)
@@ -292,10 +297,19 @@ class FixUnavailableSymbol
     FileUtils.mv(tempFileName, @filePath)
   end
 
+  def saveModifications(correctFile)
+    Dir.chdir(@projectPath)
+    originalFile = File.open(@projectPath + "/" + @filePath, "w")
+    originalFile.puts correctFile
+    originalFile.close()
+    puts "Result saved in #{@projectPath + "/" + @filePath}"
+  end
+
   def makeCommit()
     Dir.chdir(@projectPath)
     commitMesssage = "Build Conflict resolved automatic, reinsert " << @missingSymbol << " declaration in " << @filePath
     %x(git add -u)
     %x(git commit -m "#{commitMesssage}")
   end
+
 end
