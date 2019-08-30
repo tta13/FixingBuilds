@@ -1,7 +1,10 @@
-require_relative 'FixMissingVar/UnavailableSymbolExtractor.rb'
 require_relative './GitProject.rb'
+require_relative 'FixMissingVar/UnavailableSymbolExtractor.rb'
 require_relative 'FixMissingVar/BCUnavailableSymbol.rb'
 require_relative 'FixMissingVar/FixUnavailableSymbol.rb'
+require_relative 'FixDuplicatedMethod/DuplicatedMethodExtractor.rb'
+require_relative 'FixDuplicatedMethod/BCDuplicatedMethod'
+require_relative 'FixDuplicatedMethod/FixDuplicatedMethod'
 
 if ARGV.length < 1
   puts "invalid args, valid args example: "
@@ -162,6 +165,54 @@ if conflictResult[0]
       end
     else
       puts "nao entrei"
+    end
+  end
+
+else
+  puts "test duplicated method"
+  conflictParents = conflictResult[1]
+  travisLog = gitProject.getTravisLog(commitHash)
+  duplicatedMethodExtractor = DuplicatedMethodExtractor.new()
+  duplicatedResult = duplicatedMethodExtractor.extractionFilesInfo(travisLog)
+  puts duplicatedResult
+  if duplicatedResult[0] == "statementDuplication"
+    puts "entrei"
+    conflictCauses = duplicatedResult[1]
+    ocurrences = duplicatedResult[2]
+    puts "causes : #{conflictCauses}"
+    puts "ocurrences : #{ocurrences}"
+    puts "done"
+    #bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
+    #                                             conflictParents, conflictCauses)
+    #bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
+    bcDuplicatedResult = [true, "91d37f264a5bf65d7a1d1aec943ff470f9c2cad8\n"]
+    puts "bcDuplicatedResult : #{bcDuplicatedResult}"
+    if bcDuplicatedResult[0] == true
+      puts "is true"
+      baseCommit = bcDuplicatedResult[1]
+      cause = conflictCauses[0][3]
+      className = conflictCauses[0][1]
+      conflictFile = conflictCauses[0][5].tr(":","")
+      fileToChange = conflictFile.split(projectName)
+      conflictLine = Integer(conflictCauses[0][6].gsub("[","").gsub("]","").split(",")[0])
+      puts fileToChange, className, cause, baseCommit, conflictLine
+
+      puts "A build Conflict was detect, the conflict n is " + duplicatedResult[0] + "."
+      puts "Do you want fix it? Y or n"
+      resp = STDIN.gets()
+      # resp = "n"
+
+      puts ">>>>>>>>>>>>>>>class"
+      puts className
+      puts ">>>>>>>>>>>>>>>method"
+      puts methodNameByTravis
+
+      if resp != "n" && resp != "N"
+        fixer = FixDuplicatedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], cause, conflictLine)
+        puts conflictLine
+        fixer.fix(className)
+        puts "I did it"
+      end
     end
   end
 end

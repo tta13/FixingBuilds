@@ -129,7 +129,7 @@ class GitProject
 	def conflictScenario(mergeCommit)
 
 		parentsMerge = getParentsMergeIfTrue(mergeCommit)
-		puts parentsMerge
+		#puts parentsMerge
 		parentOne = nil
 		buildOne = nil
 		parentTwo = nil
@@ -137,7 +137,8 @@ class GitProject
 		
 		if (parentsMerge != nil and parentsMerge.size > 1)
 			projectBuilds = loadAllBuildsProject()
-
+			#puts "hey"
+			#puts projectBuilds[parentsMerge[0]]
 			if (projectBuilds[parentsMerge[0]] != nil and projectBuilds[parentsMerge[1]] != nil)
 				if (projectBuilds[parentsMerge[0]][0]=="passed" or projectBuilds[parentsMerge[0]][0]=="failed")
 					parentOne = true
