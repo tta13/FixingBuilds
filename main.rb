@@ -121,11 +121,12 @@ if conflictResult[0]
     puts "IM HERE"
     conflictCauses = unavailableResult[1]
     ocurrences = unavailableResult[2]
+    puts "conflict causes : #{conflictCauses}"
 
-    bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
-                                                  conflictParents, conflictCauses)
-    bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
-    #bcUnSymbolResult = [["builder", "builderWithHighestTrackableLatencyMillis"], "4cf58a80635f5799440da084adc5b41e2139b3ab"]
+    #bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
+    #                                              conflictParents, conflictCauses)
+    #bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
+    bcUnSymbolResult = [["empty", "nil"], "139fe62d58e2946ab49eb4495e111d30036197a6\n"]
     puts "bcUnSymbolResult : #{bcUnSymbolResult}"
 
     if bcUnSymbolResult[0][1] != ""
@@ -182,10 +183,10 @@ else
     puts "causes : #{conflictCauses}"
     puts "ocurrences : #{ocurrences}"
     puts "done"
-    #bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
-    #                                             conflictParents, conflictCauses)
-    #bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
-    bcDuplicatedResult = [true, "91d37f264a5bf65d7a1d1aec943ff470f9c2cad8\n"]
+    bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
+                                                 conflictParents, conflictCauses)
+    bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
+    #bcDuplicatedResult = [true, "91d37f264a5bf65d7a1d1aec943ff470f9c2cad8\n"]
     puts "bcDuplicatedResult : #{bcDuplicatedResult}"
     if bcDuplicatedResult[0] == true
       puts "is true"

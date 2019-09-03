@@ -70,22 +70,24 @@ class BCUnavailableSymbol
 	end
 
 	def runAllDiff(firstBranch, secondBranch)
+		puts firstBranch
+		puts secondBranch
 		Dir.chdir getGumTreePath()
 		mainDiff = nil
 		modifiedFilesDiff = []
 		addedFiles = []
 		deletedFiles = []
 		begin
-			# kill = %x(pkill -f gumtree)
-			sleep(5)
-			thr = Thread.new { diff = system "bash", "-c", "exec -a gumtree ./gumtree webdiff #{firstBranch.gsub("\n","")} #{secondBranch.gsub("\n","")}" }
+			 #kill = %x(pkill -f gumtree)
 			sleep(10)
+			thr = Thread.new { diff = system "bash", "-c", "exec -a gumtree ./gumtree webdiff #{firstBranch.gsub("\n","")} #{secondBranch.gsub("\n","")}" }
+			sleep(15)
 			mainDiff = %x(wget http://127.0.0.1:4567/ -q -O -)
 			modifiedFilesDiff = getDiffByModification(mainDiff[/Modified files <span class="badge">(.*?)<\/span>/m, 1])
 			addedFiles = getDiffByAddedFile(mainDiff[/Added files <span class="badge">(.*?)<\/span>/m, 1])
 			deletedFiles = getDiffByDeletedFile(mainDiff[/Deleted files <span class="badge">(.*?)<\/span>/m, 1])
 			
-			# kill = %x(pkill -f gumtree)
+			 #kill = %x(pkill -f gumtree)
 			sleep(5)
 		rescue Exception => e
 			puts e
@@ -208,10 +210,11 @@ class BCUnavailableSymbol
 			index = @conflictCauses[count][0]
 			puts count
 			puts @conflictCauses[count][1]
+			puts baseLeft[0][index]
 			if(baseRight[0][index] != nil and baseRight[0][index].to_s.match(/Delete SimpleName: #{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
 				puts "Primeiro if"
 				#puts baseLeft[0][index]
-				if (baseLeft[0][index] != nil and baseLeft[0][index].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
+				if (baseLeft[0][@conflictCauses[count][2]] != nil and baseLeft[0][@conflictCauses[count][2]].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
 					matchString = (baseLeft[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
 					newName = matchString[0].split("to ")
 					newMethod = newName[1].split(" ")
@@ -222,7 +225,7 @@ class BCUnavailableSymbol
 			if(baseLeft[0][@conflictCauses[count][0]] != nil and baseLeft[0][@conflictCauses[count][0]].to_s.match(/Delete SimpleName: #{@conflictCauses[count][1]}[\s\S]*[\n\r]?: /))
 				puts "Segundo if"
 				#puts baseRight[0][index]
-				if(baseRight[0][index] != nil and baseRight[0][index].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
+				if(baseRight[0][@conflictCauses[count][2]] != nil and baseRight[0][@conflictCauses[count][2]].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
 					matchString = (baseLeft[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
 					newName = matchString[0].split("to ")
 					newMethod = newName[1].split(" ")

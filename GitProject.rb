@@ -111,6 +111,7 @@ class GitProject
 
 	def getTravisLog(hashCommit)
 		projectBuilds = loadAllBuildsProject()
+		puts projectBuilds
 		buildId = projectBuilds.fetch(hashCommit)[1]
 
 		if (@travisRepository != nil)
@@ -123,7 +124,7 @@ class GitProject
 			end
 		end
 
-		return log
+		#return log
 	end
 
 	def conflictScenario(mergeCommit)

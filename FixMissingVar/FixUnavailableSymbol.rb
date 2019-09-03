@@ -26,7 +26,9 @@ class FixUnavailableSymbol
     %x(git checkout #{@baseCommit})
 
     # getting declaration
-    baseFileContent = File.read(Dir.getwd + "/" + @filePath)
+    puts @projectName
+    puts @filePath
+    #baseFileContent = File.read(Dir.getwd + @filePath)
     # getting merge file
     mergeFileContent = File.read(@projectPath + "/" + @filePath)
 
@@ -47,6 +49,8 @@ class FixUnavailableSymbol
       puts mergeFileContent.count("\n")
       saveModifications(corretoh)
       deleteClone()
+      makeCommit()
+=begin
     else
 
       methodName = getMethodName(baseFileContent, @line)
@@ -144,8 +148,10 @@ class FixUnavailableSymbol
       puts mergeFileContent.count("\n")
       setDeclaration(declaration, declarationLine)
       deleteClone()
+=end
+     end
+
     end
-  end
 
   def getMethodName(content, line)
     linePoint = 0
