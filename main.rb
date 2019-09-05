@@ -5,6 +5,9 @@ require_relative 'FixMissingVar/FixUnavailableSymbol.rb'
 require_relative 'FixDuplicatedMethod/DuplicatedMethodExtractor.rb'
 require_relative 'FixDuplicatedMethod/BCDuplicatedMethod'
 require_relative 'FixDuplicatedMethod/FixDuplicatedMethod'
+require_relative 'FixUnimplementedMethod/UnimplementedMethodExtractor'
+require_relative 'FixUnimplementedMethod/BCUnimplementedMethod'
+require_relative 'FixUnimplementedMethod/FixUnimplementedMethod'
 
 if ARGV.length < 1
   puts "invalid args, valid args example: "
@@ -54,15 +57,15 @@ gitProject.deleteProject()
 print conflictResult
 print"\n"
 
-if conflictResult[0]
+  puts "test unavailable symbol"
   conflictParents = conflictResult[1]
   travisLog = gitProject.getTravisLog(commitHash)
 
   unavailableSymbolExtractor = UnavailableSymbolExtractor.new()
   unavailableResult = unavailableSymbolExtractor.extractionFilesInfo(travisLog)
-  puts unavailableResult[2]
-  puts unavailableResult[1]
-  puts unavailableResult[0]
+  #puts unavailableResult[2]
+  #puts unavailableResult[1]
+  #puts unavailableResult[0]
 
   if unavailableResult[0] == "unavailableSymbolVariable"
     conflictCauses = unavailableResult[1]
@@ -81,6 +84,7 @@ if conflictResult[0]
       conflictFile = conflictCauses[0][3].tr(":","")
       fileToChange = conflictFile.gsub(/\/home\/travis\/build\/[a-z|A-Z|0-9]+\/[a-z|A-Z|0-9]+\//,"")
       conflictLine = Integer(conflictCauses[0][4].gsub("[","").gsub("]","").split(",")[0])
+      newVariable = ""
       
 
       if className == callClassName
@@ -95,8 +99,9 @@ if conflictResult[0]
         puts methodNameByTravis
         
         if resp != "n" && resp != "N"
-          fixer = FixUnavailableSymbol.new(projectName, projectPath, baseCommit, fileToChange, cause, conflictLine, unavailableResult[0])
+          fixer = FixUnavailableSymbol.new(projectName, projectPath, baseCommit, fileToChange, cause, newVariable, conflictLine, unavailableResult[0])
           fixer.fix(className)
+
         end
       end
 
@@ -123,10 +128,10 @@ if conflictResult[0]
     ocurrences = unavailableResult[2]
     puts "conflict causes : #{conflictCauses}"
 
-    #bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
-    #                                              conflictParents, conflictCauses)
-    #bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
-    bcUnSymbolResult = [["empty", "nil"], "139fe62d58e2946ab49eb4495e111d30036197a6\n"]
+    bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
+                                                  conflictParents, conflictCauses)
+    bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
+    #bcUnSymbolResult = [["empty", "nil"], "139fe62d58e2946ab49eb4495e111d30036197a6\n"]
     puts "bcUnSymbolResult : #{bcUnSymbolResult}"
 
     if bcUnSymbolResult[0][1] != ""
@@ -169,51 +174,79 @@ if conflictResult[0]
     end
   end
 
-else
-  puts "test duplicated method"
-  conflictParents = conflictResult[1]
-  travisLog = gitProject.getTravisLog(commitHash)
-  duplicatedMethodExtractor = DuplicatedMethodExtractor.new()
-  duplicatedResult = duplicatedMethodExtractor.extractionFilesInfo(travisLog)
-  puts duplicatedResult
-  if duplicatedResult[0] == "statementDuplication"
-    puts "entrei"
-    conflictCauses = duplicatedResult[1]
-    ocurrences = duplicatedResult[2]
-    puts "causes : #{conflictCauses}"
-    puts "ocurrences : #{ocurrences}"
-    puts "done"
-    bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
-                                                 conflictParents, conflictCauses)
-    bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
-    #bcDuplicatedResult = [true, "91d37f264a5bf65d7a1d1aec943ff470f9c2cad8\n"]
-    puts "bcDuplicatedResult : #{bcDuplicatedResult}"
-    if bcDuplicatedResult[0] == true
-      puts "is true"
-      baseCommit = bcDuplicatedResult[1]
-      cause = conflictCauses[0][3]
-      className = conflictCauses[0][1]
-      conflictFile = conflictCauses[0][5].tr(":","")
-      fileToChange = conflictFile.split(projectName)
-      conflictLine = Integer(conflictCauses[0][6].gsub("[","").gsub("]","").split(",")[0])
-      puts fileToChange, className, cause, baseCommit, conflictLine
+puts "test Unimplemented Method"
+unimplementedMethodExtractor = UnimplementedMethodExtractor.new()
+unimplementedResult = unimplementedMethodExtractor.extractionFilesInfo(travisLog)
+if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == "unimplementedMethodSuperType"
+  puts "Identifiquei"
+  conflictCauses = unimplementedResult[1]
+  ocurrences = unimplementedResult[2]
+  puts "causes : #{conflictCauses}"
+  puts "ocurrences : #{ocurrences}"
+  puts "done"
+  #bcUnimplementedMethod = BCUnimplementedMethod.new(gumTree, projectName, projectPath, commitHash,
+  #                                            conflictParents, conflictCauses)
+  bcUnimplementedResult = [true, "bba652c16f45fdb83956f6093b88f0efb88df584\n"]
+  puts "bcUnimplementedResult : #{bcUnimplementedResult}"
+  if bcUnimplementedResult[0] == true
+    #puts "its good"
+    baseCommit = bcUnimplementedResult[1]
+    conflictFile = conflictCauses[0][2]
+    fileToChange = conflictFile.split(projectName)
+    cause = conflictCauses[0][5]
+    className = conflictCauses[0][1]
+    puts fileToChange, baseCommit, cause
+    puts "A build Conflict was detect, the conflict n is " + unimplementedResult[0] + "."
+    puts "Do you want fix it? Y or n"
+    resp = STDIN.gets()
+    # resp = "n
+    if resp != "n" && resp != "N"
+      fixer = FixUnimplementedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], cause, className)
+      fixer.fix(className)
+      puts "I did it"
+    end
+  end
+  return
+end
 
-      puts "A build Conflict was detect, the conflict n is " + duplicatedResult[0] + "."
-      puts "Do you want fix it? Y or n"
-      resp = STDIN.gets()
-      # resp = "n"
+puts "test duplicated method"
+duplicatedMethodExtractor = DuplicatedMethodExtractor.new()
+duplicatedResult = duplicatedMethodExtractor.extractionFilesInfo(travisLog)
+if duplicatedResult[0] == "statementDuplication"
+  puts "entrei"
+  conflictCauses = duplicatedResult[1]
+  ocurrences = duplicatedResult[2]
+  puts "causes : #{conflictCauses}"
+  puts "ocurrences : #{ocurrences}"
+  puts "done"
+  bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
+                                              conflictParents, conflictCauses)
+  bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
+  #bcDuplicatedResult = [true, "91d37f264a5bf65d7a1d1aec943ff470f9c2cad8\n"]
+  puts "bcDuplicatedResult : #{bcDuplicatedResult}"
+  if bcDuplicatedResult[0] == true
+    puts "is true"
+    baseCommit = bcDuplicatedResult[1]
+    cause = conflictCauses[0][3]
+    className = conflictCauses[0][1]
+    conflictFile = conflictCauses[0][5].tr(":","")
+    fileToChange = conflictFile.split(projectName)
+    conflictLine = Integer(conflictCauses[0][6].gsub("[","").gsub("]","").split(",")[0])
+    puts fileToChange, className, cause, baseCommit, conflictLine
+    puts "A build Conflict was detect, the conflict n is " + duplicatedResult[0] + "."
+    puts "Do you want fix it? Y or n"
+    resp = STDIN.gets()
+    # resp = "n"
+    puts ">>>>>>>>>>>>>>>class"
+    puts className
+    puts ">>>>>>>>>>>>>>>method"
+    puts methodNameByTravis
 
-      puts ">>>>>>>>>>>>>>>class"
-      puts className
-      puts ">>>>>>>>>>>>>>>method"
-      puts methodNameByTravis
-
-      if resp != "n" && resp != "N"
-        fixer = FixDuplicatedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], cause, conflictLine)
-        puts conflictLine
-        fixer.fix(className)
-        puts "I did it"
-      end
+    if resp != "n" && resp != "N"
+      fixer = FixDuplicatedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], cause, conflictLine)
+      puts conflictLine
+      fixer.fix(className)
+      puts "I did it"
     end
   end
 end

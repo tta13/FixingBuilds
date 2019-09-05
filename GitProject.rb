@@ -111,7 +111,7 @@ class GitProject
 
 	def getTravisLog(hashCommit)
 		projectBuilds = loadAllBuildsProject()
-		puts projectBuilds
+		#puts projectBuilds
 		buildId = projectBuilds.fetch(hashCommit)[1]
 
 		if (@travisRepository != nil)

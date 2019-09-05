@@ -21,6 +21,9 @@ class UnavailableSymbolExtractor
 				else
 					return getInfoDefaultCase(buildLog)
 				end
+			else
+				puts "dale cps"
+				return categoryMissingSymbol, [], 0
 			end
 		rescue
 			return categoryMissingSymbol, [], 0

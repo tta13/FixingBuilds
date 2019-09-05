@@ -38,7 +38,7 @@ class DuplicatedMethodExtractor
       puts filesInformation
       return "statementDuplication", filesInformation, information.size
     rescue
-      return "statementDuplication", filesInformation, information.size
+      return "", filesInformation, information.size
     end
   end
 
