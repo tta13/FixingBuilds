@@ -9,7 +9,7 @@ class UnimplementedMethodExtractor
     begin
       return getInfoDefaultCase(buildLog)
     rescue
-      return "unimplementedMethod", [], 0
+      return "", [], 0
     end
   end
 
@@ -60,7 +60,11 @@ class UnimplementedMethodExtractor
       filesInformation.push(["unimplementedMethod", classFile, fileOnePath, interfaceFile, fileTwoPath, methodInterface])
       count += 1
     end
-    return "unimplementedMethod", filesInformation, interfaceFiles.size
+    if(interfaceFiles.size > 0)
+      return "unimplementedMethod", filesInformation, interfaceFiles.size
+    else
+      return "", [], 0
+    end
   end
 
   def getInfoSecondCase(buildLog)

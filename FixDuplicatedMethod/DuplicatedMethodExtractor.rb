@@ -30,15 +30,18 @@ class DuplicatedMethodExtractor
         count += 1
         puts error, line, fileName, callClassFile, methodName
         if (!methodName.include? ".")
-          puts "im in bro"
-          filesInformation.push(["statementDuplication", classFile, variableName, methodName,  callClassFile, fileName, line])
+          filesInformation.push([classFile, variableName, methodName,  callClassFile, fileName, line])
         end
       end
       puts "infos"
       puts filesInformation
-      return "statementDuplication", filesInformation, information.size
+      if(information.size > 0)
+        return "statementDuplication", filesInformation, information.size
+      else
+        return "", filesInformation, information.size
+      end
     rescue
-      return "", filesInformation, information.size
+      return "statementDuplication", filesInformation, information.size
     end
   end
 
