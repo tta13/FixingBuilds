@@ -29,8 +29,12 @@ class FixDuplicatedMethod
     # getting merge file
     mergeFileContent = File.read(@projectPath + "/" + @filePath)
 
-    tempFile = File.new('/home/ines/Desktop/FixingBuilds/FixDuplicatedMethod/arquivo.txt' , 'w')
+    Dir.chdir(@projectPath)
+    tempFile = File.new('arquivo.txt', 'w')
     tempFile.write(mergeFileContent)
+    tempFile.close()
+    tempFileContent = File.read(@projectPath + "/arquivo.txt")
+    puts tempFileContent
 
     startScope, endScope = getMethodScope(mergeFileContent, @duplicatedMethod)
     startLine = mergeFileContent[0..startScope].count("\n") + 1
@@ -91,7 +95,6 @@ class FixDuplicatedMethod
     end
 
     originalFile.close()
-    tempFile.close()
     puts "Result saved in #{@projectPath + "/" + @filePath}"
   end
 

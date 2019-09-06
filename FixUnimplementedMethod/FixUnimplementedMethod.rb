@@ -1,10 +1,11 @@
 class FixUnimplementedMethod
 
-  def initialize(projectName, projectPath, baseCommit, filePath, duplicatedMethod, className)
+  def initialize(projectName, projectPath, baseCommit, filePath, fileToRead, unimplementedMethod, className)
     @projectPath = projectPath
     @baseCommit = baseCommit
     @filePath = filePath
-    @duplicatedMethod = duplicatedMethod
+    @fileToRead = fileToRead
+    @unimplementedMethod = unimplementedMethod
     @projectName = projectName
     @initialPath = ""
     @className = className
@@ -28,26 +29,77 @@ class FixUnimplementedMethod
     #baseFileContent = File.read(Dir.getwd + "/" + @filePath)
     # getting merge file
     mergeFileContent = File.read(@projectPath + "/" + @filePath)
-    #puts mergeFileContent
+    readFileContent = File.read(@projectPath + @fileToRead + ".java")
+    methodDeclaration = readFileContent.scan(/[\w]* #{@unimplementedMethod}\(/)[0]
+    type = methodDeclaration.split(" ")[0]
 
     startScope, endScope = getClassScope(mergeFileContent, @className)
     startLine = mergeFileContent[0..startScope].count("\n") + 1
     endLine = mergeFileContent[0..endScope].count("\n") + 1
 
+    case type
+    when "String"
+      declaration = "      @Override
+      public Class<?> #{@unimplementedMethod}() {
+          return \"\";
+      }
+"
+    when "Array"
+      declaration = "      @Override
+      public Class<?> #{@unimplementedMethod}() {
+          [];
+      }
+"
+    when "boolean"
+      declaration = "      @Override
+      public Class<?> #{@unimplementedMethod}() {
+          return false;
+      }
+"
+    when "char"
+      declaration = "     @Override
+      public Class<?> #{@unimplementedMethod}() {
+          return '';
+      }
+"
+    when "double"
+      declaration = "      @Override
+      public Class<?> #{@unimplementedMethod}() {
+          return 0.0;
+      }
+"
+    when "float"
+      declaration = "      @Override
+      public Class<?> #{@unimplementedMethod}() {
+          return 0.0;
+      }
+"
+    else
+      declaration = "      @Override
+      public Class<?> #{@unimplementedMethod}() {
+          return 0;
+      }
+"
+    end
 
-    #puts startLine, endLine
-    #puts "Erasing duplicated"
-    #eraseDuplicated(tempFile, startLine, endLine)
-    #deleteClone()
-    #makeCommit()
+    puts declaration
+
+    Dir.chdir(@projectPath)
+    tempFile = File.new('arquivo.txt', 'w')
+    tempFile.write(mergeFileContent)
+    tempFile.close()
+    tempFileContent = File.read(@projectPath + "/arquivo.txt")
+    puts tempFileContent
 
 
-
+    setDeclaration(tempFile, declaration, endLine - 1)
+    deleteClone()
+    makeCommit()
   end
 
   def getClassScope(fileContent, className)
     # classDeclaration = fileContent.scan(/[public |private |protected |^.]*[a-z]*[ ]+class .*[ ]*{/m)
-    classDeclaration = fileContent.scan(/class[ ]*ConstantValueInstantiator [\w\.\-\<\>\p\?\[\]\, \n]*{/)[0]
+    classDeclaration = fileContent.scan(/class[ ]*#{className} [\w\.\-\<\>\?\[\]\, \n]*{/)[0]
 
     # search the declaration line
     classIndex = fileContent.index(classDeclaration)
@@ -71,9 +123,32 @@ class FixUnimplementedMethod
     return startScope, endScope
   end
 
+  def setDeclaration(tempFile, declaration, lineToInsert)
+    puts "declaring..."
+    puts lineToInsert
+    Dir.chdir(@projectPath)
+
+    originalFile = File.open(@projectPath + "/" + @filePath, "w+")
+    lineCount = 0
+
+    File.open(tempFile, 'r+').each do |line|
+      lineCount = lineCount + 1
+      originalFile.write(line)
+
+      if lineCount == lineToInsert
+        originalFile.write(declaration)
+      end
+    end
+
+    originalFile.close()
+    #tempFile.close()
+
+    puts "Result saved in #{@projectPath + "/" + @filePath}"
+  end
+
   def makeCommit()
     Dir.chdir(@projectPath)
-    commitMesssage = "Build Conflict resolved automatic, deletion " << @duplicatedMethod << " declaration in " << @filePath
+    commitMesssage = "Build Conflict resolved automatic, insertion " << @unimplementedMethod << " declaration in " << @filePath
     %x(git add -u)
     %x(git commit -m "#{commitMesssage}")
   end

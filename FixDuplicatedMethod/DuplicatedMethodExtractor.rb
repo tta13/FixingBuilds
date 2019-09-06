@@ -33,7 +33,6 @@ class DuplicatedMethodExtractor
           filesInformation.push([classFile, variableName, methodName,  callClassFile, fileName, line])
         end
       end
-      puts "infos"
       puts filesInformation
       if(information.size > 0)
         return "statementDuplication", filesInformation, information.size

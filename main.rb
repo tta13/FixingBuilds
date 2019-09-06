@@ -57,16 +57,14 @@ gitProject.deleteProject()
 print conflictResult
 print"\n"
 
-puts "testing unavailable symbol"
 conflictParents = conflictResult[1]
 travisLog = gitProject.getTravisLog(commitHash)
 
+
+#testing build conflicts
+puts "testing unavailable symbol"
 unavailableSymbolExtractor = UnavailableSymbolExtractor.new()
 unavailableResult = unavailableSymbolExtractor.extractionFilesInfo(travisLog)
-#puts unavailableResult[2]
-#puts unavailableResult[1]
-#puts unavailableResult[0]
-
 if unavailableResult[0] == "unavailableSymbolVariable"
    conflictCauses = unavailableResult[1]
    ocurrences = unavailableResult[2]
@@ -130,7 +128,10 @@ elsif unavailableResult[0] == "unavailableSymbolMethod"
    #bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
    #                                              conflictParents, conflictCauses)
    #bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
-   bcUnSymbolResult = [["empty", "nil"], "139fe62d58e2946ab49eb4495e111d30036197a6\n"]
+   # valores para o cenario 2
+   # bcUnSymbolResult = [["empty", "nil"], "139fe62d58e2946ab49eb4495e111d30036197a6\n"]
+   # valores para o cenario 1
+   bcUnSymbolResult = [["builder", "builderWithHighestTrackableLatencyMillis"], "4cf58a80635f5799440da084adc5b41e2139b3ab\n"]
    puts "bcUnSymbolResult : #{bcUnSymbolResult}"
 
    if bcUnSymbolResult[0][1] != ""
@@ -173,7 +174,7 @@ elsif unavailableResult[0] == "unavailableSymbolMethod"
    end
 end
 
-puts "testing Unimplemented Method"
+puts "testing unimplemented method"
 unimplementedMethodExtractor = UnimplementedMethodExtractor.new()
 unimplementedResult = unimplementedMethodExtractor.extractionFilesInfo(travisLog)
 if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == "unimplementedMethodSuperType"
@@ -192,6 +193,11 @@ if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == 
     baseCommit = bcUnimplementedResult[1]
     conflictFile = conflictCauses[0][2]
     fileToChange = conflictFile.split(projectName)
+    aux = conflictCauses[0][4].split(".")[0]
+    aux1 = conflictFile.split(aux)
+    conflictFile2 = conflictCauses[0][4].gsub(".", "/")
+    fileToRead = aux1[0] + conflictFile2
+    fileToRead = fileToRead.split(projectName)
     cause = conflictCauses[0][5]
     className = conflictCauses[0][1]
     puts fileToChange, baseCommit, cause
@@ -200,7 +206,7 @@ if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == 
     resp = STDIN.gets()
     # resp = "n
     if resp != "n" && resp != "N"
-      fixer = FixUnimplementedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], cause, className)
+      fixer = FixUnimplementedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], fileToRead[1], cause, className)
       fixer.fix(className)
       puts "I did it"
     end
@@ -217,10 +223,10 @@ if duplicatedResult[0] == "statementDuplication"
   puts "causes : #{conflictCauses}"
   puts "ocurrences : #{ocurrences}"
   puts "done"
-  #bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
-  #                                            conflictParents, conflictCauses)
-  #bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
-  bcDuplicatedResult = [true, "91d37f264a5bf65d7a1d1aec943ff470f9c2cad8\n"]
+  bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
+                                              conflictParents, conflictCauses)
+  bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
+  #bcDuplicatedResult = [true, "91d37f264a5bf65d7a1d1aec943ff470f9c2cad8\n"]
   puts "bcDuplicatedResult : #{bcDuplicatedResult}"
   if bcDuplicatedResult[0] == true
     puts "is true"
