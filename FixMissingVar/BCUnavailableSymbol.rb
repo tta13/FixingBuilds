@@ -101,10 +101,14 @@ class BCUnavailableSymbol
 		index = 0
 		result = Hash.new()
 		while(index < numberOcorrences.to_i)
-			gumTreePage = Nokogiri::HTML(RestClient.get("http://127.0.0.1:4567/script/#{index}"))
-			file = gumTreePage.css('div.col-lg-12 h3 small').text[/(.*?) \-\>/m, 1].gsub(".java", "")
-			script = gumTreePage.css('div.col-lg-12 pre').text
-			result[file.to_s] = script.gsub('"', "\"")
+			begin
+				gumTreePage = Nokogiri::HTML(RestClient.get("http://127.0.0.1:4567/script/#{index}"))
+				file = gumTreePage.css('div.col-lg-12 h3 small').text[/(.*?) \-\>/m, 1].gsub(".java", "")
+				script = gumTreePage.css('div.col-lg-12 pre').text
+				result[file.to_s] = script.gsub('"', "\"")
+			rescue
+				print "NO GUMTREE DIFF AVAILABLE"
+			end
 			index += 1
 		end
 		return result
@@ -211,16 +215,14 @@ class BCUnavailableSymbol
 			index = @conflictCauses[count][0]
 			puts count
 			puts @conflictCauses[count][1]
-			puts baseLeft[0][index]
 			if(baseRight[0][index] != nil and baseRight[0][index].to_s.match(/Delete SimpleName: #{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
 				puts "Primeiro if"
-				#puts baseLeft[0][index]
 				if ((baseLeft[0][@conflictCauses[count][2]] != nil and baseLeft[0][@conflictCauses[count][2]].to_s.match(/(Update|Insert) (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/)) or checkNewMethodAddition(baseLeft[1],@conflictCauses[count][2]))
-					matchString = (baseLeft[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
+					matchString = (baseRight[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
 					newName = matchString[0].split("to ")
 					newMethod = newName[1].split(" ")
 					puts "retornarei 1"
-					return newMethod, @conflictCauses[count][1]
+					return newMethod[0], @conflictCauses[count][1]
 				end
 			end
 			if(baseLeft[0][@conflictCauses[count][0]] != nil and baseLeft[0][@conflictCauses[count][0]].to_s.match(/Delete SimpleName: #{@conflictCauses[count][1]}[\s\S]*[\n\r]?: /))

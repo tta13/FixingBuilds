@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42c7781-5b21-4003-84cf-128589faa7ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/FixingBuilds.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FixDuplicatedMethod/BCDuplicatedMethod.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixDuplicatedMethod/BCDuplicatedMethod.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FixDuplicatedMethod/FixDuplicatedMethod.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixDuplicatedMethod/FixDuplicatedMethod.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FixMissingVar/BCUnavailableSymbol.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixMissingVar/BCUnavailableSymbol.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FixUnimplementedMethod/BCUnimplementedMethod.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixUnimplementedMethod/BCUnimplementedMethod.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FixUnimplementedMethod/FixUnimplementedMethod.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixUnimplementedMethod/FixUnimplementedMethod.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.rb" beforeDir="false" afterPath="$PROJECT_DIR$/main.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,6 +18,12 @@
   <component name="ProjectId" id="1QbhgP05xmKoweBY8YAITvSEAln" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -52,7 +49,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568045313551</updated>
-      <workItem from="1568045317005" duration="1968000" />
+      <workItem from="1568045317005" duration="4301000" />
+      <workItem from="1568050716747" duration="3272000" />
     </task>
     <servers />
   </component>
@@ -64,7 +62,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

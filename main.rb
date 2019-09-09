@@ -124,7 +124,7 @@ elsif unavailableResult[0] == "unavailableSymbolMethod"
    conflictCauses = unavailableResult[1]
    ocurrences = unavailableResult[2]
    puts "conflict causes : #{conflictCauses}"
-
+   #return
    bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
                                                  conflictParents, conflictCauses)
    bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
