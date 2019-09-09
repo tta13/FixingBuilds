@@ -125,13 +125,13 @@ elsif unavailableResult[0] == "unavailableSymbolMethod"
    ocurrences = unavailableResult[2]
    puts "conflict causes : #{conflictCauses}"
 
-   #bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
-   #                                              conflictParents, conflictCauses)
-   #bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
+   bcUnavailableSymbol = BCUnavailableSymbol.new(gumTree, projectName, projectPath, commitHash,
+                                                 conflictParents, conflictCauses)
+   bcUnSymbolResult = bcUnavailableSymbol.getGumTreeAnalysis()
    # valores para o cenario 2
    # bcUnSymbolResult = [["empty", "nil"], "139fe62d58e2946ab49eb4495e111d30036197a6\n"]
    # valores para o cenario 1
-   bcUnSymbolResult = [["builder", "builderWithHighestTrackableLatencyMillis"], "4cf58a80635f5799440da084adc5b41e2139b3ab\n"]
+   #bcUnSymbolResult = [["builder", "builderWithHighestTrackableLatencyMillis"], "4cf58a80635f5799440da084adc5b41e2139b3ab\n"]
    puts "bcUnSymbolResult : #{bcUnSymbolResult}"
 
    if bcUnSymbolResult[0][1] != ""
@@ -184,9 +184,10 @@ if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == 
   puts "causes : #{conflictCauses}"
   puts "ocurrences : #{ocurrences}"
   puts "done"
-  #bcUnimplementedMethod = BCUnimplementedMethod.new(gumTree, projectName, projectPath, commitHash,
-  #                                            conflictParents, conflictCauses)
-  bcUnimplementedResult = [true, "bba652c16f45fdb83956f6093b88f0efb88df584\n"]
+  bcUnimplementedMethod = BCUnimplementedMethod.new(gumTree, projectName, projectPath, commitHash,
+                                              conflictParents, conflictCauses)
+  bcUnimplementedResult = bcUnimplementedMethod.getGumTreeAnalysis()
+  #bcUnimplementedResult = [true, "bba652c16f45fdb83956f6093b88f0efb88df584\n"]
   puts "bcUnimplementedResult : #{bcUnimplementedResult}"
   if bcUnimplementedResult[0] == true
     #puts "its good"

@@ -88,7 +88,7 @@ class BCUnimplementedMethod
       deletedFiles = getDiffByDeletedFile(mainDiff[/Deleted files <span class="badge">(.*?)<\/span>/m, 1])
       print deletedFiles
 
-      kill = %x(pkill gumtree)
+      kill = %x(pkill -f gumtree)
       sleep(10)
     rescue Exception => e
       puts e
@@ -101,10 +101,14 @@ class BCUnimplementedMethod
     index = 0
     result = Hash.new()
     while(index < numberOcorrences.to_i)
-      gumTreePage = Nokogiri::HTML(RestClient.get("http://127.0.0.1:4567/script/#{index}"))
-      file = gumTreePage.css('div.col-lg-12 h3 small').text[/(.*?) \-\>/m, 1].gsub(".java", "")
-      script = gumTreePage.css('div.col-lg-12 pre').text
-      result[file.to_s] = script.gsub('"', "\"")
+      begin
+        gumTreePage = Nokogiri::HTML(RestClient.get("http://127.0.0.1:4567/script/#{index}"))
+        file = gumTreePage.css('div.col-lg-12 h3 small').text[/(.*?) \-\>/m, 1].gsub(".java", "")
+        script = gumTreePage.css('div.col-lg-12 pre').text
+        result[file.to_s] = script.gsub('"', "\"")
+      rescue
+        print "NO GUMTREE DIFF AVAILABLE"
+      end
       index += 1
     end
     return result
@@ -209,14 +213,14 @@ class BCUnimplementedMethod
     begin
       puts baseRight[0][filesConflicting[2]]
       #puts baseRight[0][filesConflicting[2]]
-      if(baseLeft[0][filesConflicting[2]] != nil and baseLeft[0][filesConflicting[2].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[3].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or baseLeft[0][filesConflicting[2].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/) or baseLeft[0][filesConflicting[2].to_s].to_s.match(/Insert (SimpleName|Modifier): abstract[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]* on Method #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/))
-        if ((rightResult[0][filesConflicting[2]].to_s.match(/Insert SimpleName: #{filesConflicting[3].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or rightResult[0][filesConflicting[2].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/)) and ((rightResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleType: #{filesConflicting[2].gsub(/\(.*/, '').gsub('(', '')}[0-9\(\)]* into TypeDeclaration[0-9\(\)]*/)) and (!rightResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or !rightResult[0][filesConflicting[1].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/))) or checkIfFileIsNew(baseRight[1], filesConflicting[1]))
+      if(baseLeft[0][filesConflicting[3]] != nil and baseLeft[0][filesConflicting[3].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[5].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or baseLeft[0][filesConflicting[3].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/) or baseLeft[0][filesConflicting[3].to_s].to_s.match(/Insert (SimpleName|Modifier): abstract[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]* on Method #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/))
+        if ((rightResult[0][filesConflicting[3]].to_s.match(/Insert SimpleName: #{filesConflicting[5].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or rightResult[0][filesConflicting[3].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/)) and ((rightResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleType: #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}[0-9\(\)]* into TypeDeclaration[0-9\(\)]*/)) and (!rightResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or !rightResult[0][filesConflicting[1].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/))) or checkIfFileIsNew(baseRight[1], filesConflicting[1]))
           #BUILD CONFLICT DETECTED
           return true
         end
       end
-      if(baseRight[0][filesConflicting[2]] != nil and baseRight[0][filesConflicting[2]].to_s.match(/Insert SimpleName: #{filesConflicting[3].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or baseRight[0][filesConflicting[2].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/) or baseRight[0][filesConflicting[2].to_s].to_s.match(/Insert (SimpleName|Modifier): abstract[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]* on Method #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/))
-        if ((leftResult[0][filesConflicting[2]].to_s.match(/Insert SimpleName: #{filesConflicting[3].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or leftResult[0][filesConflicting[2].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/)) and ((leftResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleType: #{filesConflicting[2].gsub(/\(.*/, '').gsub('(', '')}[0-9\(\)]* into TypeDeclaration[0-9\(\)]*/)) and (!leftResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or !leftResult[0][filesConflicting[1].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/))) or checkIfFileIsNew(baseLeft[1], filesConflicting[1]))
+      if(baseRight[0][filesConflicting[3]] != nil and baseRight[0][filesConflicting[3]].to_s.match(/Insert SimpleName: #{filesConflicting[5].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or baseRight[0][filesConflicting[3].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/) or baseRight[0][filesConflicting[3].to_s].to_s.match(/Insert (SimpleName|Modifier): abstract[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]* on Method #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/))
+        if ((leftResult[0][filesConflicting[3]].to_s.match(/Insert SimpleName: #{filesConflicting[5].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or leftResult[0][filesConflicting[3].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}/)) and ((leftResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleType: #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}[0-9\(\)]* into TypeDeclaration[0-9\(\)]*/)) and (!leftResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or !leftResult[0][filesConflicting[1].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/))) or checkIfFileIsNew(baseLeft[1], filesConflicting[1]))
           #BUILD CONFLICT DETECTED"
           return true
         end

@@ -88,7 +88,7 @@ class BCUnavailableSymbol
 			deletedFiles = getDiffByDeletedFile(mainDiff[/Deleted files <span class="badge">(.*?)<\/span>/m, 1])
 			print deletedFiles
 			
-			 kill = %x(pkill gumtree)
+			 kill = %x(pkill -f gumtree)
 			sleep(10)
 		rescue Exception => e
 			puts e
@@ -215,7 +215,7 @@ class BCUnavailableSymbol
 			if(baseRight[0][index] != nil and baseRight[0][index].to_s.match(/Delete SimpleName: #{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
 				puts "Primeiro if"
 				#puts baseLeft[0][index]
-				if (baseLeft[0][@conflictCauses[count][2]] != nil and baseLeft[0][@conflictCauses[count][2]].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
+				if ((baseLeft[0][@conflictCauses[count][2]] != nil and baseLeft[0][@conflictCauses[count][2]].to_s.match(/(Update|Insert) (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/)) or checkNewMethodAddition(baseLeft[1],@conflictCauses[count][2]))
 					matchString = (baseLeft[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
 					newName = matchString[0].split("to ")
 					newMethod = newName[1].split(" ")
@@ -226,7 +226,7 @@ class BCUnavailableSymbol
 			if(baseLeft[0][@conflictCauses[count][0]] != nil and baseLeft[0][@conflictCauses[count][0]].to_s.match(/Delete SimpleName: #{@conflictCauses[count][1]}[\s\S]*[\n\r]?: /))
 				puts "Segundo if"
 				#puts baseRight[0][index]
-				if(baseRight[0][@conflictCauses[count][2]] != nil and baseRight[0][@conflictCauses[count][2]].to_s.match(/Update (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/))
+				if((baseRight[0][@conflictCauses[count][2]] != nil and baseRight[0][@conflictCauses[count][2]].to_s.match(/(Update|Insert) (SimpleName|QualifiedName): [a-zA-Z\. ]*#{@conflictCauses[count][1]}[\s\S]*[\n\r]?/)) or checkNewMethodAddition(baseRight[1],@conflictCauses[count][2]))
 					matchString = (baseLeft[0][index]).scan(/Update SimpleName: [a-zA-Z\. ]*#{@conflictCauses[count][1]}\([0-9]*\) to [a-zA-Z0-9]+ [\n\r]?/)
 					newName = matchString[0].split("to ")
 					newMethod = newName[1].split(" ")
@@ -238,6 +238,18 @@ class BCUnavailableSymbol
 		end
 		puts "retornarei nil"
 		return "", ""
+	end
+	def checkNewMethodAddition(listAddedFiles, file)
+		begin
+			listAddedFiles.each do |oneFile|
+				if (oneFile.include? file)
+					return true
+				end
+			end
+			return false
+		rescue
+			return false
+		end
 	end
 
 end

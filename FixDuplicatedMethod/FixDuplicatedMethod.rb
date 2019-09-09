@@ -44,6 +44,7 @@ class FixDuplicatedMethod
     #puts "Erasing duplicated"
     eraseDuplicated(tempFile, startLine, endLine)
     deleteClone()
+    FileUtils.rm %w( arquivo.txt )
     makeCommit()
 
 

@@ -94,6 +94,7 @@ class FixUnimplementedMethod
 
     setDeclaration(tempFile, declaration, endLine - 1)
     deleteClone()
+    FileUtils.rm %w( arquivo.txt )
     makeCommit()
   end
 

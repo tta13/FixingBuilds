@@ -85,7 +85,7 @@ class BCDuplicatedMethod
       addedFiles = getDiffByAddedFile(mainDiff[/Added files <span class="badge">(.*?)<\/span>/m, 1])
       deletedFiles = getDiffByDeletedFile(mainDiff[/Deleted files <span class="badge">(.*?)<\/span>/m, 1])
 
-      # kill = %x(pkill -f gumtree)
+      kill = %x(pkill -f gumtree)
       sleep(5)
     rescue Exception => e
       puts e
