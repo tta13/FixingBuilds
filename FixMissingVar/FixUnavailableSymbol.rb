@@ -49,7 +49,16 @@ class FixUnavailableSymbol
       puts mergeFileContent.count("\n")
       saveModifications(corretoh)
       deleteClone()
-      makeCommit()
+      log = %x(mvn clean install)
+      if(!log.to_s.match(/\[INFO\] BUILD FAILURE/))
+        puts "Do you want to commit the automatica changes? Y or N"
+        resp = STDIN.gets()
+        if !resp.match(/(n|N)/)
+          makeCommit()
+        end
+      else
+        puts "Your project still has some compilation errors"
+      end
 =begin
     else
 

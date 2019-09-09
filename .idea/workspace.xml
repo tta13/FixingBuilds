@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d42c7781-5b21-4003-84cf-128589faa7ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FixMissingVar/BCUnavailableSymbol.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixMissingVar/BCUnavailableSymbol.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.rb" beforeDir="false" afterPath="$PROJECT_DIR$/main.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FixDuplicatedMethod/FixDuplicatedMethod.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixDuplicatedMethod/FixDuplicatedMethod.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FixMissingVar/FixUnavailableSymbol.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixMissingVar/FixUnavailableSymbol.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FixUnimplementedMethod/FixUnimplementedMethod.rb" beforeDir="false" afterPath="$PROJECT_DIR$/FixUnimplementedMethod/FixUnimplementedMethod.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +51,7 @@
       <option name="presentableId" value="Default" />
       <updated>1568045313551</updated>
       <workItem from="1568045317005" duration="4301000" />
-      <workItem from="1568050716747" duration="3272000" />
+      <workItem from="1568050716747" duration="5177000" />
     </task>
     <servers />
   </component>
