@@ -23,17 +23,14 @@ class DuplicatedMethodExtractor
         error = callClassFiles[count].to_s
         line = error[error.rindex("[")..error.rindex("]")]
         fileName = error.match(/\[ERROR\]?[ \t\r\n\f]*[\/\-\.\:a-zA-Z0-9\,\_]*/)[0]
-        puts "first", fileName
         callClassFile = fileName.split("/").last.gsub(".java:", "").gsub("\r", "").to_s
         fileName = fileName[fileName.index('/')..-1]
         methodName = information[count].to_s.match(/\[ERROR\] [a-zA-Z0-9\/\-\.\:\[\,\]\s\_]*/)[0].split(" ").last
         count += 1
-        puts error, line, fileName, callClassFile, methodName
         if (!methodName.include? ".")
           filesInformation.push([classFile, variableName, methodName,  callClassFile, fileName, line])
         end
       end
-      puts filesInformation
       if(information.size > 0)
         return "statementDuplication", filesInformation, information.size
       else

@@ -50,10 +50,8 @@ class BCDuplicatedMethod
     actualPath = Dir.pwd
 
     pathCopies = createCopyProject()
-    puts "pathCopies : #{pathCopies}"
     #  		   					result 		  left 			right 			MergeCommit 	parent1 		parent2 	problemas
     out = gumTreeDiffByBranch(pathCopies[1], pathCopies[2], pathCopies[3], pathCopies[4], getPathLocalClone(), getPathLocalClone())
-    puts "Amgigo sto aqui"
     deleteProjectCopies(pathCopies)
     Dir.chdir actualPath
     return out, pathCopies[5]
@@ -207,7 +205,6 @@ class BCDuplicatedMethod
     #    begin
     puts filesConflicting
     if (filesConflicting[0][1] != "method")
-      puts "entrei"
       if(baseRight[0][filesConflicting[0][0]] != nil and baseRight[0][filesConflicting[0][0]].to_s.match(/Insert SimpleName: #{filesConflicting[0][2]}[0-9\(\)]* into [a-zA-Z\:\= 0-9\(\)]* on Method #{filesConflicting[0][3]}/))
         if (baseLeft[0][filesConflicting[0][0]] != nil and baseLeft[0][filesConflicting[0][0]].to_s.match(/Insert SimpleName: #{filesConflicting[0][2]}[0-9\(\)]* into [a-zA-Z\:\= 0-9\(\)]* on Method #{filesConflicting[0][3]}/))
           return true

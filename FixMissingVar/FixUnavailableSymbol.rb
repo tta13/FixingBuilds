@@ -26,8 +26,6 @@ class FixUnavailableSymbol
     %x(git checkout #{@baseCommit})
 
     # getting declaration
-    puts @projectName
-    puts @filePath
     #baseFileContent = File.read(Dir.getwd + @filePath)
     # getting merge file
     mergeFileContent = File.read(@projectPath + "/" + @filePath)
@@ -36,8 +34,6 @@ class FixUnavailableSymbol
     # declarationPoints.delete_if {|x| x.match("return " + @missingVar + ";") != nil }
 
     if(@unavailableResult == "unavailableSymbolMethod")
-      puts "olha eu aqui de novo"
-      puts @missingSymbol
       puts @newSymbol
       corretoh = mergeFileContent.gsub(@missingSymbol, @newSymbol)
       #puts corretoh

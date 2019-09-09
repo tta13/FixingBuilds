@@ -120,7 +120,6 @@ if unavailableResult[0] == "unavailableSymbolVariable"
    end
 
 elsif unavailableResult[0] == "unavailableSymbolMethod"
-   puts "IM HERE"
    conflictCauses = unavailableResult[1]
    ocurrences = unavailableResult[2]
    puts "conflict causes : #{conflictCauses}"
@@ -145,12 +144,6 @@ elsif unavailableResult[0] == "unavailableSymbolMethod"
      fileToChange = conflictFile.split(projectName)
      conflictLine = Integer(conflictCauses[0][4].gsub("[","").gsub("]","").split(",")[0])
 
-     puts "Entrei"
-     puts bcUnSymbolResult
-
-     puts bcUnSymbolResult[0][1]
-     puts methodNameByTravis
-
      if bcUnSymbolResult[0][1] == methodNameByTravis
        puts "A build Conflict was detect, the conflict n is " + unavailableResult[0] + "."
        puts "Do you want fix it? Y or n"
@@ -166,11 +159,8 @@ elsif unavailableResult[0] == "unavailableSymbolMethod"
          fixer = FixUnavailableSymbol.new(projectName, projectPath, baseCommit, fileToChange[1], cause, newSymbol, conflictLine, unavailableResult[0])
          puts conflictLine
          fixer.fix(className)
-         puts "I did it"
        end
      end
-   else
-      puts "nao entrei"
    end
 end
 
@@ -178,12 +168,8 @@ puts "testing unimplemented method"
 unimplementedMethodExtractor = UnimplementedMethodExtractor.new()
 unimplementedResult = unimplementedMethodExtractor.extractionFilesInfo(travisLog)
 if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == "unimplementedMethodSuperType"
-  puts "Identifiquei"
   conflictCauses = unimplementedResult[1]
   ocurrences = unimplementedResult[2]
-  puts "causes : #{conflictCauses}"
-  puts "ocurrences : #{ocurrences}"
-  puts "done"
   bcUnimplementedMethod = BCUnimplementedMethod.new(gumTree, projectName, projectPath, commitHash,
                                               conflictParents, conflictCauses)
   bcUnimplementedResult = bcUnimplementedMethod.getGumTreeAnalysis()
@@ -201,7 +187,7 @@ if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == 
     fileToRead = fileToRead.split(projectName)
     cause = conflictCauses[0][5]
     className = conflictCauses[0][1]
-    puts fileToChange, baseCommit, cause
+
     puts "A build Conflict was detect, the conflict n is " + unimplementedResult[0] + "."
     puts "Do you want fix it? Y or n"
     resp = STDIN.gets()
@@ -209,7 +195,6 @@ if unimplementedResult[0] == "unimplementedMethod" or unimplementedResult[0] == 
     if resp != "n" && resp != "N"
       fixer = FixUnimplementedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], fileToRead[1], cause, className)
       fixer.fix(className)
-      puts "I did it"
     end
   end
 end
@@ -221,9 +206,6 @@ if duplicatedResult[0] == "statementDuplication"
   puts "entrei"
   conflictCauses = duplicatedResult[1]
   ocurrences = duplicatedResult[2]
-  puts "causes : #{conflictCauses}"
-  puts "ocurrences : #{ocurrences}"
-  puts "done"
   bcDuplicatedMethod = BCDuplicatedMethod.new(gumTree, projectName, projectPath, commitHash,
                                               conflictParents, conflictCauses)
   bcDuplicatedResult = bcDuplicatedMethod.getGumTreeAnalysis()
@@ -251,7 +233,6 @@ if duplicatedResult[0] == "statementDuplication"
       fixer = FixDuplicatedMethod.new(projectName, projectPath, baseCommit, fileToChange[1], cause, conflictLine)
       puts conflictLine
       fixer.fix(className)
-      puts "I did it"
     end
   end
 end

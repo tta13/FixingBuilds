@@ -50,10 +50,8 @@ class BCUnimplementedMethod
     actualPath = Dir.pwd
 
     pathCopies = createCopyProject()
-    puts "pathCopies : #{pathCopies}"
     #  		   					result 		  left 			right 			MergeCommit 	parent1 		parent2 	problemas
     out = gumTreeDiffByBranch(pathCopies[1], pathCopies[2], pathCopies[3], pathCopies[4], getPathLocalClone(), getPathLocalClone())
-    puts "Amgigo sto aqui"
     deleteProjectCopies(pathCopies)
     Dir.chdir actualPath
     return out, pathCopies[5]
@@ -211,7 +209,6 @@ class BCUnimplementedMethod
 
   def verifyBuildConflict(baseLeft, leftResult, baseRight, rightResult, filesConflicting)
     begin
-      puts baseRight[0][filesConflicting[2]]
       #puts baseRight[0][filesConflicting[2]]
       if(baseLeft[0][filesConflicting[3]] != nil and baseLeft[0][filesConflicting[3].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[5].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or baseLeft[0][filesConflicting[3].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/) or baseLeft[0][filesConflicting[3].to_s].to_s.match(/Insert (SimpleName|Modifier): abstract[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]* on Method #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/))
         if ((rightResult[0][filesConflicting[3]].to_s.match(/Insert SimpleName: #{filesConflicting[5].to_s.gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or rightResult[0][filesConflicting[3].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/)) and ((rightResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleType: #{filesConflicting[3].gsub(/\(.*/, '').gsub('(', '')}[0-9\(\)]* into TypeDeclaration[0-9\(\)]*/)) and (!rightResult[0][filesConflicting[1].to_s].to_s.match(/Insert SimpleName: #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}[\(\)0-9]* into MethodDeclaration[\(\)0-9]* at [0-9]*/) or !rightResult[0][filesConflicting[1].to_s].to_s.match(/Update SimpleName: [\s\S]* to #{filesConflicting[5].gsub(/\(.*/, '').gsub('(', '')}/))) or checkIfFileIsNew(baseRight[1], filesConflicting[1]))

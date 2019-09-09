@@ -34,7 +34,6 @@ class FixDuplicatedMethod
     tempFile.write(mergeFileContent)
     tempFile.close()
     tempFileContent = File.read(@projectPath + "/arquivo.txt")
-    puts tempFileContent
 
     startScope, endScope = getMethodScope(mergeFileContent, @duplicatedMethod)
     startLine = mergeFileContent[0..startScope].count("\n") + 1
@@ -90,7 +89,6 @@ class FixDuplicatedMethod
 
   def eraseDuplicated(tempFile, startScope, endScope)
     puts "erasing..."
-    puts startScope, endScope
     Dir.chdir(@projectPath)
     originalFile = File.open(@projectPath + "/" + @filePath, "w+")
     lineCount = 0
